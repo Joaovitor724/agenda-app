@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belezza — Entrar</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { overflow: hidden; }
+    @media (max-width: 1024px) { body { overflow: auto; } }
+  </style>
+</head>
+<body>
+
+  <div class="login-page">
+
+    <!-- ── Visual Side ── -->
+    <div class="login-visual">
+      <a href="index.html" class="login-back">← Voltar ao site</a>
+
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+
+      <div class="login-visual-content">
+        <div class="login-logo">Belezz<span>a</span></div>
+        <div class="login-tagline">Sua beleza, nossa paixão</div>
+
+        <div class="login-features">
+          <div class="login-feature">
+            <div class="login-feature-icon">📅</div>
+            <span>Agende serviços online 24h por dia</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">💅</div>
+            <span>Escolha sua profissional favorita</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">🔔</div>
+            <span>Receba lembretes do seu horário</span>
+          </div>
+          <div class="login-feature">
+            <div class="login-feature-icon">⭐</div>
+            <span>Histórico completo dos seus serviços</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="display: flex; gap: 32px; justify-content: center;">
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">12+</div>
+              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Anos</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">5k+</div>
+              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Clientes</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">98%</div>
+              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Satisfação</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Form Side ── -->
+    <div class="login-form-side">
+      <div class="login-form-box">
+
+        <div id="view-login">
+          <h1 class="login-form-title">Bem-vinda <em>de volta</em></h1>
+          <p class="login-form-subtitle">Entre na sua conta para agendar e gerenciar seus horários.</p>
+
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-input" id="login-email" placeholder="seu@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" style="display:flex; align-items:center; justify-content:space-between;">
+              Senha
+              <a href="#" style="font-size:12px; color:var(--rose-deep); font-weight:400; text-transform:none; letter-spacing:0;">Esqueceu a senha?</a>
+            </label>
+            <div class="input-password-wrap">
+              <input type="password" class="form-input" id="login-password" placeholder="Sua senha" />
+              <button class="password-toggle" onclick="togglePassword('login-password', this)" type="button">👁</button>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:28px;">
+            <input type="checkbox" id="remember" style="accent-color: var(--rose-deep); width:16px; height:16px;" />
+            <label for="remember" style="font-size:14px; color:var(--muted); cursor:pointer;">Lembrar de mim</label>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; justify-content:center; font-size:14px; padding:16px;" onclick="doLogin()">
+            Entrar na conta
+          </button>
+
+          <div class="login-divider">
+            <div class="login-divider-line"></div>
+            <span class="login-divider-text">ou</span>
+            <div class="login-divider-line"></div>
+          </div>
+
+          <button class="btn btn-outline" style="width:100%; justify-content:center; font-size:14px; padding:16px; gap:12px;" onclick="demoLogin()">
+            <span>✨</span> Entrar como visitante
+          </button>
+
+          <div class="login-footer-text">
+            Não tem conta? <a href="#" onclick="showRegister(); return false;">Criar conta grátis</a>
+          </div>
+        </div>
+
+        <!-- ── Register view ── -->
+        <div id="view-register" style="display:none;">
+          <h1 class="login-form-title">Criar <em>conta</em></h1>
+          <p class="login-form-subtitle">Cadastre-se e comece a agendar seus serviços favoritos.</p>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-input" id="reg-firstname" placeholder="Maria" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sobrenome</label>
+              <input type="text" class="form-input" id="reg-lastname" placeholder="Silva" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-input" id="reg-email" placeholder="seu@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Telefone</label>
+            <input type="tel" class="form-input" id="reg-phone" placeholder="(11) 99999-9999" data-mask="phone" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Senha</label>
+            <div class="input-password-wrap">
+              <input type="password" class="form-input" id="reg-password" placeholder="Mínimo 8 caracteres" />
+              <button class="password-toggle" onclick="togglePassword('reg-password', this)" type="button">👁</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom:28px;">
+            <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+              <input type="checkbox" id="terms" style="accent-color: var(--rose-deep); width:16px; height:16px; margin-top:3px; flex-shrink:0;" />
+              <span style="font-size:13px; color:var(--muted); line-height:1.6;">Aceito os <a href="#" style="color:var(--rose-deep);">Termos de Uso</a> e a <a href="#" style="color:var(--rose-deep);">Política de Privacidade</a> do Belezza</span>
+            </label>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; justify-content:center; font-size:14px; padding:16px;" onclick="doRegister()">
+            Criar minha conta
+          </button>
+
+          <div class="login-footer-text">
+            Já tem conta? <a href="#" onclick="showLogin(); return false;">Entrar agora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (Belezza.getUser()) window.location.href = 'index.html';
+
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
+      else { input.type = 'password'; btn.textContent = '👁'; }
+    }
+
+    function showRegister() {
+      document.getElementById('view-login').style.display = 'none';
+      document.getElementById('view-register').style.display = 'block';
+    }
+    function showLogin() {
+      document.getElementById('view-register').style.display = 'none';
+      document.getElementById('view-login').style.display = 'block';
+    }
+
+    function doLogin() {
+      const email    = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      if (!email || !password) { Belezza.showToast('Preencha todos os campos.', 'warning'); return; }
+      if (!email.includes('@')) { Belezza.showToast('E-mail inválido.', 'error'); return; }
+      // Demo login accepts any valid email + password with 6+ chars
+      if (password.length < 6) { Belezza.showToast('Senha incorreta.', 'error'); return; }
+      const name = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      Belezza.setUser({ name, email });
+      Belezza.showToast('Bem-vinda de volta! 💖', 'success');
+      setTimeout(() => window.location.href = 'index.html', 1000);
+    }
+
+    function demoLogin() {
+      Belezza.setUser({ name: 'Maria Silva', email: 'maria@demo.com' });
+      Belezza.showToast('Entrando como visitante...', 'info');
+      setTimeout(() => window.location.href = 'index.html', 800);
+    }
+
+    function doRegister() {
+      const first    = document.getElementById('reg-firstname').value.trim();
+      const last     = document.getElementById('reg-lastname').value.trim();
+      const email    = document.getElementById('reg-email').value.trim();
+      const phone    = document.getElementById('reg-phone').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const terms    = document.getElementById('terms').checked;
+      if (!first || !last || !email || !phone || !password) { Belezza.showToast('Preencha todos os campos.', 'warning'); return; }
+      if (!email.includes('@')) { Belezza.showToast('E-mail inválido.', 'error'); return; }
+      if (password.length < 8) { Belezza.showToast('A senha deve ter mínimo 8 caracteres.', 'warning'); return; }
+      if (!terms) { Belezza.showToast('Aceite os termos para continuar.', 'warning'); return; }
+      Belezza.setUser({ name: `${first} ${last}`, email, phone });
+      Belezza.showToast('Conta criada com sucesso! 🎉', 'success');
+      setTimeout(() => window.location.href = 'index.html', 1000);
+    }
+
+    // Enter key support
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        if (document.getElementById('view-login').style.display !== 'none') doLogin();
+        else doRegister();
+      }
+    });
+  </script>
+</body>
+</html>

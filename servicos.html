@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belezza — Serviços</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--rose-pale);
+      border-color: var(--rose);
+      color: var(--rose-deep);
+    }
+    .service-card-full {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .service-card-full:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+    .service-card-full .service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      background: var(--rose-pale);
+      padding: 4px 12px;
+      border-radius: 100px;
+      width: fit-content;
+    }
+    .service-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service-includes li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .service-includes li::before {
+      content: '✓';
+      color: var(--rose-deep);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Belezz<span>a</span></a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+        <li><a href="agendamento.html">Agendamento</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="orb orb-1"></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="breadcrumb">
+          <a href="index.html">Início</a>
+          <span>›</span>
+          <span>Serviços</span>
+        </div>
+        <h1 class="page-hero-title">Nossos <em>Serviços</em></h1>
+        <p class="page-hero-subtitle">Cada experiência é pensada com carinho para realçar sua beleza natural.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filtros -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="cabelo">Cabelo</button>
+        <button class="filter-btn" data-filter="unhas">Unhas</button>
+        <button class="filter-btn" data-filter="make">Maquiagem</button>
+        <button class="filter-btn" data-filter="tratamento">Tratamentos</button>
+      </div>
+
+      <div class="services-grid" id="services-list" style="grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));">
+
+        <div class="service-card-full" data-category="cabelo">
+          <div class="service-badge">✂️ Cabelo</div>
+          <div class="service-name" style="font-size:26px;">Corte & Styling</div>
+          <p class="service-desc">Cortes modernos e clássicos, adaptados ao formato do seu rosto e estilo de vida. Nossas profissionais fazem uma análise personalizada antes de cada corte.</p>
+          <ul class="service-includes">
+            <li>Consulta personalizada</li>
+            <li>Lavagem com shampoo premium</li>
+            <li>Corte e finalização</li>
+            <li>Dicas de manutenção em casa</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 120</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 60 min</span>
+            </div>
+            <a href="agendamento.html?servico=Corte+%26+Styling" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+        <div class="service-card-full" data-category="cabelo">
+          <div class="service-badge">🎨 Cabelo</div>
+          <div class="service-name" style="font-size:26px;">Coloração</div>
+          <p class="service-desc">Técnicas avançadas de coloração, mechas e balayage com produtos premium importados. Resultado duradouro e com brilho intenso.</p>
+          <ul class="service-includes">
+            <li>Análise da cor natural</li>
+            <li>Aplicação profissional</li>
+            <li>Tonalização final</li>
+            <li>Hidratação pós-química</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 280</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 150 min</span>
+            </div>
+            <a href="agendamento.html?servico=Colora%C3%A7%C3%A3o" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+        <div class="service-card-full" data-category="tratamento">
+          <div class="service-badge">✨ Tratamento</div>
+          <div class="service-name" style="font-size:26px;">Tratamento Capilar</div>
+          <p class="service-desc">Hidratação, reconstrução e nutrição profunda para cabelos saudáveis e brilhantes. Protocolo personalizado para cada tipo de fio.</p>
+          <ul class="service-includes">
+            <li>Diagnóstico capilar</li>
+            <li>Proteínas e queratinas</li>
+            <li>Máscara de hidratação</li>
+            <li>Finalização com brilho</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 160</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 90 min</span>
+            </div>
+            <a href="agendamento.html?servico=Tratamento+Capilar" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+        <div class="service-card-full" data-category="unhas">
+          <div class="service-badge">💅 Unhas</div>
+          <div class="service-name" style="font-size:26px;">Manicure & Pedicure</div>
+          <p class="service-desc">Unhas impecáveis com esmaltes de longa duração e cuidados completos para mãos e pés. Ambiente relaxante e higiênico.</p>
+          <ul class="service-includes">
+            <li>Cutilagem profissional</li>
+            <li>Esmalte de longa duração</li>
+            <li>Hidratação das mãos</li>
+            <li>Massagem relaxante</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 85</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 90 min</span>
+            </div>
+            <a href="agendamento.html?servico=Manicure+%26+Pedicure" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+        <div class="service-card-full" data-category="make">
+          <div class="service-badge">🌸 Make</div>
+          <div class="service-name" style="font-size:26px;">Maquiagem</div>
+          <p class="service-desc">Make social, noiva ou dia a dia com técnicas profissionais e produtos de alta qualidade. Do natural ao glamouroso.</p>
+          <ul class="service-includes">
+            <li>Preparação da pele</li>
+            <li>Base e corretivo</li>
+            <li>Olhos, lábios e contorno</li>
+            <li>Fixação de longa duração</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 200</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 75 min</span>
+            </div>
+            <a href="agendamento.html?servico=Maquiagem" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+        <div class="service-card-full" data-category="make">
+          <div class="service-badge">🧖 Make</div>
+          <div class="service-name" style="font-size:26px;">Sobrancelha & Depilação</div>
+          <p class="service-desc">Design de sobrancelha e depilação com linha, cera ou henna para um olhar marcante e expressivo.</p>
+          <ul class="service-includes">
+            <li>Análise do formato do rosto</li>
+            <li>Design personalizado</li>
+            <li>Depilação com linha ou cera</li>
+            <li>Opção de henna inclusa</li>
+          </ul>
+          <div class="service-meta" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border);">
+            <div>
+              <span class="service-price" style="font-size:28px;">R$ 55</span>
+              <span class="service-duration" style="margin-left:12px;">⏱ 30 min</span>
+            </div>
+            <a href="agendamento.html?servico=Sobrancelha" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="orb orb-1"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Não sabe qual <em>escolher?</em></h2>
+        <p class="cta-subtitle">Entre em contato e nossas especialistas te ajudam a montar o pacote perfeito para você.</p>
+        <div class="cta-actions">
+          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Agora</a>
+          <a href="contato.html" class="btn btn-ghost btn-lg">Falar Conosco</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Belezz<span>a</span></div>
+          <p class="footer-desc">Salão de beleza premium no coração de São Paulo.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn">📸</a>
+            <a href="#" class="social-btn">👍</a>
+            <a href="#" class="social-btn">🎵</a>
+            <a href="#" class="social-btn">💬</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Serviços</div>
+          <ul class="footer-links">
+            <li><a href="servicos.html">Corte & Styling</a></li>
+            <li><a href="servicos.html">Coloração</a></li>
+            <li><a href="servicos.html">Manicure</a></li>
+            <li><a href="servicos.html">Tratamentos</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Salão</div>
+          <ul class="footer-links">
+            <li><a href="equipe.html">Nossa Equipe</a></li>
+            <li><a href="agendamento.html">Agendar Online</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contato</div>
+          <ul class="footer-links">
+            <li><a href="contato.html">📍 Rua Augusta, 1200 – SP</a></li>
+            <li><a href="tel:+5511999999999">📞 (11) 99999-9999</a></li>
+            <li><a href="mailto:contato@belezza.com.br">✉️ contato@belezza.com.br</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Belezza. Todos os direitos reservados.</span>
+        <span>Feito com 💖 em São Paulo</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp-float">
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">💬</a>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#services-list .service-card-full').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

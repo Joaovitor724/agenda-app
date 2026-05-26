@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belezza — Salão de Beleza</title>
+  <meta name="description" content="Belezza – Experiência única em beleza e bem-estar. Agende seu horário online." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Belezz<span>a</span></a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+        <li><a href="agendamento.html">Agendamento</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-pattern"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Salão Premium — São Paulo</div>
+        <h1 class="hero-title">
+          Realce sua
+          <em>beleza natural</em>
+        </h1>
+        <p class="hero-subtitle">
+          Experiências exclusivas de beleza e bem-estar com as melhores profissionais da cidade. Porque você merece se sentir incrível todos os dias.
+        </p>
+        <div class="hero-actions">
+          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Horário</a>
+          <a href="servicos.html" class="btn btn-ghost">Ver Serviços</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number">12+</div>
+        <div class="hero-stat-label">Anos de Experiência</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">5k+</div>
+        <div class="hero-stat-label">Clientes Felizes</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">98%</div>
+        <div class="hero-stat-label">Satisfação</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS DESTAQUE -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">O que oferecemos</span>
+        <h2 class="section-title">Nossos <em>Serviços</em></h2>
+        <p style="color: var(--muted); font-size: 16px; max-width: 500px; margin-top: 12px;">
+          Cada serviço é pensado para proporcionar uma experiência única de cuidado e beleza.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="location.href='servicos.html'">
+          <div class="service-icon">✂️</div>
+          <div class="service-name">Corte & Styling</div>
+          <p class="service-desc">Cortes modernos e clássicos, adaptados ao seu rosto e estilo de vida.</p>
+          <div class="service-meta">
+            <span class="service-price">R$ 120</span>
+            <span class="service-duration">⏱ 60 min</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="location.href='servicos.html'">
+          <div class="service-icon">🎨</div>
+          <div class="service-name">Coloração</div>
+          <p class="service-desc">Técnicas avançadas de coloração, mechas e balayage com produtos premium.</p>
+          <div class="service-meta">
+            <span class="service-price">R$ 280</span>
+            <span class="service-duration">⏱ 150 min</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="location.href='servicos.html'">
+          <div class="service-icon">💅</div>
+          <div class="service-name">Manicure & Pedicure</div>
+          <p class="service-desc">Unhas impecáveis com esmaltes de longa duração e cuidados completos.</p>
+          <div class="service-meta">
+            <span class="service-price">R$ 85</span>
+            <span class="service-duration">⏱ 90 min</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 48px; text-align: center;">
+        <a href="servicos.html" class="btn btn-outline" style="color: var(--rose-deep);">Ver todos os serviços →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE DESTAQUE -->
+  <section class="section team-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-label">Conheça as especialistas</span>
+        <h2 class="section-title">Nossa <em>Equipe</em></h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-light), var(--nude));">👩‍🦱</div>
+            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Camila Ferreira</div>
+            <div class="team-role">Diretora & Colorista</div>
+            <div class="team-specialties"><span class="tag">Balayage</span><span class="tag">Coloração</span><span class="tag">Cortes</span></div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--lilac-light), var(--rose-light));">👩‍🦰</div>
+            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Juliana Santos</div>
+            <div class="team-role">Especialista Capilar</div>
+            <div class="team-specialties"><span class="tag">Tratamentos</span><span class="tag">Cachos</span><span class="tag">Progressiva</span></div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--nude-light), var(--lilac-light));">👩</div>
+            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Brenda Lima</div>
+            <div class="team-role">Manicure & Nail Artist</div>
+            <div class="team-specialties"><span class="tag">Gel</span><span class="tag">Nail Art</span><span class="tag">Fibra</span></div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-pale), var(--nude-light));">👩‍🦳</div>
+            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Patrícia Moura</div>
+            <div class="team-role">Maquiadora & Designer</div>
+            <div class="team-specialties"><span class="tag">Noivas</span><span class="tag">Festas</span><span class="tag">Sobrancelha</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 48px; text-align: center;">
+        <a href="equipe.html" class="btn btn-outline" style="color: var(--rose-deep);">Conhecer toda a equipe →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-label">O que dizem sobre nós</span>
+        <h2 class="section-title">Depoimentos <em>reais</em></h2>
+      </div>
+    </div>
+    <div style="overflow: hidden; margin-top: 48px;">
+      <div class="testimonials-track">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Melhor salão que já fui! A Camila entendeu exatamente o que eu queria. Saí completamente transformada e apaixonada pelo resultado."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div><div class="testimonial-name">Ana Paula Costa</div><div class="testimonial-date">Março 2025</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Fiz o balayage com a Camila e ficou perfeito! O ambiente é lindo, as meninas são super atenciosas. Já indiquei para todas as amigas."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div><div class="testimonial-name">Marina Alves</div><div class="testimonial-date">Fevereiro 2025</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"A Brenda é uma artista! Minhas unhas nunca ficaram tão bonitas. Atendimento impecável do início ao fim. Voltarei sempre!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">F</div>
+            <div><div class="testimonial-name">Fernanda Rocha</div><div class="testimonial-date">Janeiro 2025</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Fiz maquiagem de noiva com a Patrícia e me senti uma princesa! Durou o dia todo e ficou ainda mais linda nas fotos. Recomendo demais!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div><div class="testimonial-name">Larissa Mendes</div><div class="testimonial-date">Dezembro 2024</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Tratamento capilar incrível! Meu cabelo estava muito danificado e a Juliana fez um milagre. Brilhante, hidratado e sem frizz. Amei!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div><div class="testimonial-name">Rebeca Souza</div><div class="testimonial-date">Novembro 2024</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Agendamento super fácil pelo site, pontualidade perfeita e resultado acima das expectativas. O Belezza é referência em qualidade!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div><div class="testimonial-name">Carla Rodrigues</div><div class="testimonial-date">Outubro 2024</div></div>
+          </div>
+        </div>
+        <!-- duplicados -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Melhor salão que já fui! A Camila entendeu exatamente o que eu queria. Saí completamente transformada e apaixonada pelo resultado."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div><div class="testimonial-name">Ana Paula Costa</div><div class="testimonial-date">Março 2025</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Fiz o balayage com a Camila e ficou perfeito! O ambiente é lindo, as meninas são super atenciosas. Já indiquei para todas as amigas."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div><div class="testimonial-name">Marina Alves</div><div class="testimonial-date">Fevereiro 2025</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"A Brenda é uma artista! Minhas unhas nunca ficaram tão bonitas. Atendimento impecável do início ao fim. Voltarei sempre!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">F</div>
+            <div><div class="testimonial-name">Fernanda Rocha</div><div class="testimonial-date">Janeiro 2025</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="orb orb-1"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Pronta para se <em>sentir incrível?</em></h2>
+        <p class="cta-subtitle">Agende agora mesmo e venha viver a experiência Belezza. Seu momento merece ser especial.</p>
+        <div class="cta-actions">
+          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Agora</a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-ghost btn-lg">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Belezz<span>a</span></div>
+          <p class="footer-desc">Salão de beleza premium no coração de São Paulo. Experiências únicas de beleza e bem-estar desde 2013.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Facebook">👍</a>
+            <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+            <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Serviços</div>
+          <ul class="footer-links">
+            <li><a href="servicos.html">Corte & Styling</a></li>
+            <li><a href="servicos.html">Coloração</a></li>
+            <li><a href="servicos.html">Manicure</a></li>
+            <li><a href="servicos.html">Tratamentos</a></li>
+            <li><a href="servicos.html">Maquiagem</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Salão</div>
+          <ul class="footer-links">
+            <li><a href="equipe.html">Nossa Equipe</a></li>
+            <li><a href="index.html#depoimentos">Depoimentos</a></li>
+            <li><a href="agendamento.html">Agendar Online</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contato</div>
+          <ul class="footer-links">
+            <li><a href="contato.html">📍 Rua Augusta, 1200 – Jardins, SP</a></li>
+            <li><a href="tel:+5511999999999">📞 (11) 99999-9999</a></li>
+            <li><a href="mailto:contato@belezza.com.br">✉️ contato@belezza.com.br</a></li>
+            <li style="color: rgba(255,255,255,0.4); font-size: 14px; padding-top: 4px;">Seg–Sáb: 9h às 19h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Belezza. Todos os direitos reservados.</span>
+        <span>Feito com 💖 em São Paulo</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-bubble">Oi! Posso te ajudar? 💬</div>
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">💬</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
