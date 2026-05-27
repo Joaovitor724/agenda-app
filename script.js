@@ -1,258 +1,621 @@
-/* ================================================
-   BELEZZA — Main JavaScript
-   ================================================ */
+/* ══════════════════════════════════════════════
+   BELEZA — Main Application JavaScript
+   SaaS Premium Agendamento Feminino
+   ══════════════════════════════════════════════ */
 
-// ── Navbar scroll behavior ──────────────────────
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
-  // Run on load too
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}
+'use strict';
 
-// ── Mobile menu ──────────────────────────────────
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks   = document.querySelector('.navbar-links');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    const spans = menuToggle.querySelectorAll('span');
-    spans.forEach(s => s.style.background = navLinks.classList.contains('open') ? 'var(--charcoal)' : '');
-  });
-  document.addEventListener('click', e => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove('open');
+/* ── Namespace Global ── */
+const Beleza = (function () {
+
+  /* ─────────────────────────────────────────
+     CONSTANTES
+  ───────────────────────────────────────── */
+  const STORAGE_USER_KEY   = 'beleza_user';
+  const STORAGE_APPTS_KEY  = 'beleza_appointments';
+  const STORAGE_RESET_KEY  = 'beleza_reset';
+
+  /* ─────────────────────────────────────────
+     TOAST NOTIFICATIONS
+  ───────────────────────────────────────── */
+
+  /**
+   * Exibe uma notificação toast premium
+   * @param {string} message - Mensagem a exibir
+   * @param {'success'|'error'|'warning'|'info'} type - Tipo da notificação
+   * @param {number} duration - Duração em ms (padrão: 3500)
+   */
+  function showToast(message, type = 'info', duration = 3500) {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      container.className = 'toast-container';
+      document.body.appendChild(container);
     }
-  });
-}
 
-// ── Active nav link ──────────────────────────────
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.navbar-links a').forEach(link => {
-  const href = link.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-    link.classList.add('active');
-  }
-});
+    const icons = {
+      success: '✅',
+      error:   '❌',
+      warning: '⚠️',
+      info:    '💜'
+    };
 
-// ── Auth state ───────────────────────────────────
-const getUser = () => {
-  try { return JSON.parse(localStorage.getItem('belezza_user')); } catch { return null; }
-};
-const setUser = (u) => localStorage.setItem('belezza_user', JSON.stringify(u));
-const logout  = () => { localStorage.removeItem('belezza_user'); window.location.href = 'login.html'; };
-
-// Update navbar user button
-function updateNavbarUser() {
-  const user = getUser();
-  const actionsEl = document.querySelector('.navbar-actions');
-  if (!actionsEl) return;
-  if (user) {
-    const initials = user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-    actionsEl.innerHTML = `
-      <div class="navbar-user-btn" id="user-menu-btn">
-        <div class="navbar-user-avatar">${initials}</div>
-        <span>${user.name.split(' ')[0]}</span>
-        <span style="font-size:10px; opacity:0.6;">▾</span>
-      </div>
-      <div id="user-dropdown" style="display:none; position:absolute; top:80px; right:24px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius-md); padding:8px; min-width:180px; box-shadow:var(--shadow-hover); z-index:2000;">
-        <div style="padding:12px 16px; border-bottom:1px solid var(--border); margin-bottom:8px;">
-          <div style="font-size:14px; font-weight:600; color:var(--charcoal);">${user.name}</div>
-          <div style="font-size:12px; color:var(--muted);">${user.email}</div>
-        </div>
-        <a href="agendamentos.html" style="display:flex; align-items:center; gap:10px; padding:10px 16px; border-radius:8px; font-size:14px; color:var(--charcoal); transition:var(--transition);" onmouseover="this.style.background='var(--rose-pale)'" onmouseout="this.style.background=''">📅 Meus Agendamentos</a>
-        <a href="#" onclick="logout(); return false;" style="display:flex; align-items:center; gap:10px; padding:10px 16px; border-radius:8px; font-size:14px; color:#E57373; transition:var(--transition);" onmouseover="this.style.background='var(--rose-pale)'" onmouseout="this.style.background=''">🚪 Sair</a>
-      </div>
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <span class="toast-icon">${icons[type] || icons.info}</span>
+      <span>${message}</span>
     `;
-    document.getElementById('user-menu-btn')?.addEventListener('click', () => {
-      const dd = document.getElementById('user-dropdown');
-      dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
-    });
-    document.addEventListener('click', e => {
-      if (!document.getElementById('user-menu-btn')?.contains(e.target)) {
-        const dd = document.getElementById('user-dropdown');
-        if (dd) dd.style.display = 'none';
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('out');
+      setTimeout(() => toast.remove(), 350);
+    }, duration);
+  }
+
+  /* ─────────────────────────────────────────
+     AUTENTICAÇÃO (localStorage fake)
+  ───────────────────────────────────────── */
+
+  /**
+   * Retorna o usuário logado ou null
+   * @returns {object|null}
+   */
+  function getUser() {
+    try {
+      const raw = localStorage.getItem(STORAGE_USER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Salva usuário no localStorage
+   * @param {object} user
+   */
+  function setUser(user) {
+    localStorage.setItem(STORAGE_USER_KEY, JSON.stringify(user));
+  }
+
+  /**
+   * Remove usuário (logout)
+   */
+  function logout() {
+    localStorage.removeItem(STORAGE_USER_KEY);
+    showToast('Você saiu da conta. Até logo! 👋', 'info');
+    setTimeout(() => window.location.href = 'home.html', 1000);
+  }
+
+  /* ─────────────────────────────────────────
+     RECUPERAÇÃO DE SENHA
+  ───────────────────────────────────────── */
+
+  /**
+   * Gera código numérico aleatório de 6 dígitos
+   * @returns {string}
+   */
+  function generateResetCode() {
+    return String(Math.floor(100000 + Math.random() * 900000));
+  }
+
+  /**
+   * Salva código de reset para o email (simulação)
+   * @param {string} email
+   * @returns {string} código gerado
+   */
+  function saveResetCode(email) {
+    const code    = generateResetCode();
+    const expires = Date.now() + 15 * 60 * 1000; // 15 minutos
+    localStorage.setItem(STORAGE_RESET_KEY, JSON.stringify({ email, code, expires }));
+    return code;
+  }
+
+  /**
+   * Valida código de reset inserido pelo usuário
+   * @param {string} email
+   * @param {string} code
+   * @returns {boolean}
+   */
+  function validateResetCode(email, code) {
+    try {
+      const raw  = localStorage.getItem(STORAGE_RESET_KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (data.email !== email) return false;
+      if (data.code  !== code.trim()) return false;
+      if (Date.now() > data.expires) { clearResetCode(); return false; }
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Remove código de reset após uso
+   */
+  function clearResetCode() {
+    localStorage.removeItem(STORAGE_RESET_KEY);
+  }
+
+  /* ─────────────────────────────────────────
+     NAVBAR DINÂMICA
+  ───────────────────────────────────────── */
+
+  /**
+   * Inicializa a navbar:
+   * - Scroll effect
+   * - Active link
+   * - Menu mobile
+   * - User state (Entrar / nome)
+   */
+  function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    // Scroll effect
+    function onScroll() {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Active link
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    const links = navbar.querySelectorAll('.navbar-links a');
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === '' && href === 'home.html')) {
+        link.classList.add('active');
       }
     });
-  } else {
-    actionsEl.innerHTML = `<a href="login.html" class="btn btn-primary btn-sm">Entrar</a>`;
-  }
-}
-updateNavbarUser();
 
-// ── Toast Notifications ──────────────────────────
-function showToast(message, type = 'info', duration = 3500) {
-  let container = document.querySelector('.toast-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-  }
-  const icons = { success: '✅', error: '❌', info: '💬', warning: '⚠️' };
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <span class="toast-icon">${icons[type] || icons.info}</span>
-    <span class="toast-message">${message}</span>
-    <span class="toast-close" onclick="this.parentElement.remove()">✕</span>
-  `;
-  container.appendChild(toast);
-  setTimeout(() => {
-    toast.style.animation = 'slideInRight 0.4s reverse forwards';
-    setTimeout(() => toast.remove(), 400);
-  }, duration);
-}
+    // Mobile burger
+    const burger  = document.getElementById('navbar-burger');
+    const drawer  = document.getElementById('navbar-drawer');
+    if (burger && drawer) {
+      burger.addEventListener('click', () => {
+        const isOpen = drawer.classList.toggle('open');
+        burger.classList.toggle('open', isOpen);
+        burger.setAttribute('aria-expanded', isOpen);
+      });
 
-// ── Modal helper ────────────────────────────────
-function openModal(id)  { document.getElementById(id)?.classList.add('active'); }
-function closeModal(id) { document.getElementById(id)?.classList.remove('active'); }
-
-document.addEventListener('click', e => {
-  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
-  if (e.target.classList.contains('modal-close')) e.target.closest('.modal-overlay')?.classList.remove('active');
-});
-
-// ── Intersection Observer – fade in ─────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      observer.unobserve(entry.target);
+      // Fechar drawer ao clicar em link
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          burger.classList.remove('open');
+        });
+      });
     }
-  });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.service-card, .team-card, .stat-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
-
-// ── Calendar Widget ─────────────────────────────
-class Calendar {
-  constructor(el, opts = {}) {
-    this.el          = typeof el === 'string' ? document.querySelector(el) : el;
-    this.current     = new Date();
-    this.selected    = null;
-    this.onSelect    = opts.onSelect || (() => {});
-    this.disablePast = opts.disablePast !== false;
-    this.availableDates = opts.availableDates || null;
-    if (this.el) this.render();
+    // Atualizar botão de auth
+    updateAuthButton();
   }
-  render() {
-    const { current } = this;
+
+  /**
+   * Atualiza o botão de autenticação na navbar
+   */
+  function updateAuthButton() {
+    const user = getUser();
+    const btnWrap = document.querySelector('.navbar-actions');
+    if (!btnWrap) return;
+
+    if (user) {
+      btnWrap.innerHTML = `
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:13px; color:var(--muted); font-weight:500;">
+            Olá, ${user.name.split(' ')[0]} ✨
+          </span>
+          <button class="btn btn-secondary btn-sm" onclick="Beleza.logout()">Sair</button>
+        </div>
+      `;
+    } else {
+      btnWrap.innerHTML = `
+        <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
+      `;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     SCROLL ANIMATIONS
+  ───────────────────────────────────────── */
+
+  /**
+   * Inicializa animações de entrada no scroll
+   */
+  function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     CALENDAR (agendamento.html)
+  ───────────────────────────────────────── */
+
+  let calendarDate = new Date();
+  let selectedDate = null;
+  let selectedTime = null;
+
+  /**
+   * Renderiza o calendário completo
+   */
+  function renderCalendar() {
+    const title = document.getElementById('cal-title');
+    const grid  = document.getElementById('cal-grid');
+    if (!title || !grid) return;
+
+    const year  = calendarDate.getFullYear();
+    const month = calendarDate.getMonth();
     const today = new Date();
-    const year  = current.getFullYear();
-    const month = current.getMonth();
-    const firstDay    = new Date(year, month, 1).getDay();
+
+    const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                    'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+    title.textContent = `${months[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-    const dayNames   = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-    let html = `
-      <div class="calendar-header">
-        <button class="calendar-nav" data-action="prev">‹</button>
-        <div class="calendar-month">${monthNames[month]} ${year}</div>
-        <button class="calendar-nav" data-action="next">›</button>
-      </div>
-      <div class="calendar-grid">
-        ${dayNames.map(d => `<div class="calendar-day-name">${d}</div>`).join('')}
-        ${Array(firstDay === 0 ? 6 : firstDay - 1).fill('<div></div>').join('')}
-    `;
+    const daysInPrev  = new Date(year, month, 0).getDate();
+
+    grid.innerHTML = '';
+
+    // Dias da semana
+    ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].forEach(d => {
+      const el = document.createElement('div');
+      el.className = 'calendar-day-header';
+      el.textContent = d;
+      grid.appendChild(el);
+    });
+
+    // Dias do mês anterior
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const el = document.createElement('div');
+      el.className = 'calendar-day other-month';
+      el.textContent = daysInPrev - i;
+      grid.appendChild(el);
+    }
+
+    // Dias do mês atual
     for (let d = 1; d <= daysInMonth; d++) {
-      const date   = new Date(year, month, d);
+      const el    = document.createElement('div');
+      const date  = new Date(year, month, d);
+      const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
       const isToday = date.toDateString() === today.toDateString();
-      const isPast  = this.disablePast && date < today && !isToday;
-      const isSel   = this.selected && date.toDateString() === this.selected.toDateString();
-      const hasSlot = !isPast && (this.availableDates === null || this.availableDates.includes(d));
-      let cls = 'calendar-day';
-      if (isPast)  cls += ' disabled';
-      if (isToday) cls += ' today';
-      if (isSel)   cls += ' selected';
-      if (hasSlot && !isPast) cls += ' has-slot';
-      html += `<div class="${cls}" data-day="${d}">${d}</div>`;
+      const isSunday = date.getDay() === 0;
+
+      el.className = 'calendar-day';
+      el.textContent = d;
+
+      if (isPast || isSunday) {
+        el.classList.add('disabled');
+      } else {
+        if (isToday) el.classList.add('today');
+        if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+          el.classList.add('selected');
+        }
+        el.addEventListener('click', () => selectDate(date, el));
+      }
+      grid.appendChild(el);
     }
-    html += '</div>';
-    this.el.innerHTML = html;
-    this.el.querySelectorAll('.calendar-day:not(.disabled)').forEach(day => {
-      day.addEventListener('click', () => {
-        const d = parseInt(day.dataset.day);
-        this.selected = new Date(year, month, d);
-        this.onSelect(this.selected);
-        this.render();
+  }
+
+  /**
+   * Seleciona uma data no calendário
+   */
+  function selectDate(date, el) {
+    selectedDate = date;
+    document.querySelectorAll('.calendar-day.selected').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+    renderTimeSlots();
+    updateBookingSummary();
+  }
+
+  /**
+   * Navega o calendário para o mês anterior/próximo
+   */
+  function calendarNav(dir) {
+    calendarDate.setMonth(calendarDate.getMonth() + dir);
+    renderCalendar();
+  }
+
+  /**
+   * Renderiza os horários disponíveis
+   */
+  function renderTimeSlots() {
+    const wrap = document.getElementById('time-slots');
+    if (!wrap) return;
+
+    const slots   = ['09:00','09:30','10:00','10:30','11:00','11:30',
+                     '13:00','13:30','14:00','14:30','15:00','15:30',
+                     '16:00','16:30','17:00','17:30','18:00','18:30'];
+    const taken   = ['09:30','11:00','14:00','16:30']; // Simulação
+
+    wrap.innerHTML = '';
+    slots.forEach(slot => {
+      const el = document.createElement('div');
+      el.className = 'time-slot' + (taken.includes(slot) ? ' taken' : '');
+      el.textContent = slot;
+      if (!taken.includes(slot)) {
+        el.addEventListener('click', () => selectTime(slot, el));
+      }
+      wrap.appendChild(el);
+    });
+
+    document.getElementById('time-slots-section')?.classList.remove('hidden');
+  }
+
+  /**
+   * Seleciona um horário
+   */
+  function selectTime(time, el) {
+    selectedTime = time;
+    document.querySelectorAll('.time-slot.selected').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    updateBookingSummary();
+  }
+
+  /**
+   * Atualiza o resumo do agendamento
+   */
+  function updateBookingSummary() {
+    const dateEl    = document.getElementById('summary-date');
+    const timeEl    = document.getElementById('summary-time');
+    const confirmBtn = document.getElementById('confirm-booking-btn');
+
+    if (dateEl && selectedDate) {
+      const days = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+      dateEl.textContent = `${days[selectedDate.getDay()]}, ${selectedDate.getDate()}/${selectedDate.getMonth()+1}`;
+    }
+    if (timeEl && selectedTime) {
+      timeEl.textContent = selectedTime;
+    }
+    if (confirmBtn && selectedDate && selectedTime) {
+      confirmBtn.disabled = false;
+      confirmBtn.classList.remove('opacity-50');
+    }
+  }
+
+  /**
+   * Confirma o agendamento (fake)
+   */
+  function confirmBooking() {
+    const user = getUser();
+    if (!user) {
+      showToast('Faça login para confirmar seu agendamento 💖', 'warning');
+      setTimeout(() => window.location.href = 'login.html', 1500);
+      return;
+    }
+
+    const service  = document.getElementById('select-service')?.value;
+    const prof     = document.getElementById('select-professional')?.value;
+    const btn      = document.getElementById('confirm-booking-btn');
+
+    if (!service || !prof) {
+      showToast('Selecione serviço e profissional 💅', 'warning');
+      return;
+    }
+    if (!selectedDate || !selectedTime) {
+      showToast('Selecione data e horário 📅', 'warning');
+      return;
+    }
+
+    // Loading
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    setTimeout(() => {
+      const appointment = {
+        id: Date.now(),
+        service, prof, user: user.name,
+        date: selectedDate.toLocaleDateString('pt-BR'),
+        time: selectedTime,
+        createdAt: new Date().toISOString()
+      };
+
+      const appts = JSON.parse(localStorage.getItem(STORAGE_APPTS_KEY) || '[]');
+      appts.push(appointment);
+      localStorage.setItem(STORAGE_APPTS_KEY, JSON.stringify(appts));
+
+      showToast('Agendamento confirmado! 🎉 Você receberá um lembrete.', 'success', 5000);
+      btn.classList.remove('loading');
+      btn.disabled = false;
+
+      // Reset
+      selectedDate = null;
+      selectedTime = null;
+      renderCalendar();
+
+      const wrap = document.getElementById('time-slots');
+      if (wrap) wrap.innerHTML = '';
+    }, 1800);
+  }
+
+  /* ─────────────────────────────────────────
+     MODAL HELPERS
+  ───────────────────────────────────────── */
+
+  /**
+   * Abre uma modal pelo ID
+   * @param {string} id
+   */
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal(id);
+    });
+  }
+
+  /**
+   * Fecha uma modal pelo ID
+   * @param {string} id
+   */
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ─────────────────────────────────────────
+     TOGGLE PASSWORD
+  ───────────────────────────────────────── */
+
+  /**
+   * Alterna visibilidade do campo de senha
+   * @param {string} inputId
+   * @param {HTMLElement} btn
+   */
+  function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.textContent = '🙈';
+      btn.title = 'Ocultar senha';
+    } else {
+      input.type = 'password';
+      btn.textContent = '👁';
+      btn.title = 'Mostrar senha';
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     VALIDAÇÃO DE FORMULÁRIO
+  ───────────────────────────────────────── */
+
+  /**
+   * Valida email
+   * @param {string} email
+   * @returns {boolean}
+   */
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  }
+
+  /**
+   * Valida senha (mínimo 8 chars)
+   * @param {string} password
+   * @returns {boolean}
+   */
+  function isValidPassword(password) {
+    return password.length >= 8;
+  }
+
+  /**
+   * Aplica feedback visual num input
+   * @param {string} id - ID do input
+   * @param {boolean} valid
+   */
+  function setInputState(id, valid) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('error', !valid);
+    el.classList.toggle('success', valid);
+  }
+
+  /* ─────────────────────────────────────────
+     PHONE MASK
+  ───────────────────────────────────────── */
+
+  /**
+   * Inicializa máscaras de input
+   */
+  function initMasks() {
+    document.querySelectorAll('[data-mask="phone"]').forEach(el => {
+      el.addEventListener('input', () => {
+        let v = el.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 10) {
+          v = v.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        } else if (v.length > 6) {
+          v = v.replace(/^(\d{2})(\d{4})/, '($1) $2-');
+        } else if (v.length > 2) {
+          v = v.replace(/^(\d{2})/, '($1) ');
+        }
+        el.value = v;
       });
     });
-    this.el.querySelector('[data-action="prev"]')?.addEventListener('click', () => {
-      this.current = new Date(year, month - 1, 1); this.render();
-    });
-    this.el.querySelector('[data-action="next"]')?.addEventListener('click', () => {
-      this.current = new Date(year, month + 1, 1); this.render();
-    });
   }
-}
 
-// ── SlotPicker ──────────────────────────────────
-class SlotPicker {
-  constructor(el, opts = {}) {
-    this.el          = typeof el === 'string' ? document.querySelector(el) : el;
-    this.slots       = opts.slots || this.defaultSlots();
-    this.unavailable = opts.unavailable || [];
-    this.selected    = null;
-    this.onSelect    = opts.onSelect || (() => {});
-    if (this.el) this.render();
-  }
-  defaultSlots() {
-    const times = [];
-    for (let h = 8; h <= 18; h++) {
-      ['00', '30'].forEach(m => { if (h < 18 || m === '00') times.push(`${String(h).padStart(2,'0')}:${m}`); });
-    }
-    return times;
-  }
-  render() {
-    const html = this.slots.map(time => {
-      const unavail  = this.unavailable.includes(time);
-      const selected = this.selected === time;
-      return `<div class="slot${unavail ? ' unavailable' : ''}${selected ? ' selected' : ''}" data-time="${time}">${time}</div>`;
-    }).join('');
-    this.el.innerHTML = `<div class="slots-grid">${html}</div>`;
-    this.el.querySelectorAll('.slot:not(.unavailable)').forEach(slot => {
-      slot.addEventListener('click', () => {
-        this.selected = slot.dataset.time;
-        this.onSelect(this.selected);
-        this.render();
-      });
+  /* ─────────────────────────────────────────
+     INIT GERAL
+  ───────────────────────────────────────── */
+
+  /**
+   * Ponto de entrada da aplicação
+   */
+  function init() {
+    initNavbar();
+    initScrollAnimations();
+    initMasks();
+
+    // Keyboard shortcut: ESC fecha modais
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop.open').forEach(m => {
+          closeModal(m.id);
+        });
+      }
     });
   }
-}
 
-// ── Format helpers ───────────────────────────────
-function formatDate(d) {
-  return d.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
-}
-function formatDateShort(d) {
-  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-}
-function formatCurrency(v) {
-  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
+  // Auto-init após DOM carregar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
-// Input mask – phone
-document.querySelectorAll('input[data-mask="phone"]').forEach(input => {
-  input.addEventListener('input', function () {
-    let v = this.value.replace(/\D/g, '').slice(0, 11);
-    if (v.length > 10)      v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    else if (v.length > 6)  v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    else if (v.length > 2)  v = v.replace(/^(\d{2})(\d{0,4})$/, '($1) $2');
-    this.value = v;
-  });
-});
+  /* ─────────────────────────────────────────
+     API PÚBLICA
+  ───────────────────────────────────────── */
+  return {
+    // Auth
+    getUser,
+    setUser,
+    logout,
+    // Toast
+    showToast,
+    // Modais
+    openModal,
+    closeModal,
+    // Recuperação
+    generateResetCode,
+    saveResetCode,
+    validateResetCode,
+    clearResetCode,
+    // Formulário
+    togglePassword,
+    isValidEmail,
+    isValidPassword,
+    setInputState,
+    // Calendário
+    renderCalendar,
+    calendarNav,
+    confirmBooking,
+    updateBookingSummary,
+  };
 
-// ── Expose globals ───────────────────────────────
-window.Belezza = {
-  Calendar, SlotPicker, showToast, openModal, closeModal,
-  formatDate, formatDateShort, formatCurrency,
-  getUser, setUser, logout
-};
+})();
+
+// Expõe globalmente para uso inline no HTML
+window.Beleza = Beleza;

@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belezza — Agendamento</title>
+  <title>Beleza — Agendamento Online</title>
+  <meta name="description" content="Agende seu horário no Salão Beleza online, rápido e fácil." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- ── NAVBAR ── -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">Belezz<span>a</span></a>
+      <a href="home.html" class="navbar-logo">Belez<span>a</span></a>
       <ul class="navbar-links">
-        <li><a href="index.html">Início</a></li>
+        <li><a href="home.html">Início</a></li>
         <li><a href="servicos.html">Serviços</a></li>
         <li><a href="equipe.html">Equipe</a></li>
         <li><a href="agendamento.html">Agendamento</a></li>
@@ -22,19 +23,19 @@
       <div class="navbar-actions">
         <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
       </div>
-      <button class="menu-toggle" aria-label="Menu">
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
+  <!-- ── PAGE HERO ── -->
   <section class="page-hero">
     <div class="orb orb-1"></div>
     <div class="container">
       <div class="page-hero-content">
         <div class="breadcrumb">
-          <a href="index.html">Início</a>
+          <a href="home.html">Início</a>
           <span>›</span>
           <span>Agendamento</span>
         </div>
@@ -44,11 +45,11 @@
     </div>
   </section>
 
-  <!-- BOOKING -->
-  <section class="section" style="background: var(--nude-light);">
+  <!-- ── BOOKING ── -->
+  <section class="section" style="background:var(--nude-light);">
     <div class="container">
 
-      <!-- Step Indicator -->
+      <!-- Indicador de Etapas -->
       <div class="steps" id="steps-indicator">
         <div class="step-wrapper">
           <div class="step active" id="step-1"><div class="step-circle">1</div></div>
@@ -71,67 +72,67 @@
         </div>
       </div>
 
-      <!-- Booking Card -->
-      <div class="card" style="max-width: 900px; margin: 0 auto; padding: 48px;">
+      <!-- Card principal do agendamento -->
+      <div class="card" style="max-width:900px;margin:0 auto;padding:48px;">
 
-        <!-- PASSO 1 -->
+        <!-- PASSO 1: Escolher serviço -->
         <div id="booking-step-1">
-          <h3 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 8px;">Qual serviço você deseja?</h3>
-          <p style="color: var(--muted); margin-bottom: 32px; font-size: 15px;">Selecione o serviço para seu agendamento.</p>
-          <div class="services-grid" id="booking-services" style="gap: 14px;">
-            <div class="service-card" data-service="Corte & Styling" data-price="120" data-duration="60" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+          <h3 style="font-family:var(--font-display);font-size:28px;margin-bottom:8px;">Qual serviço você deseja?</h3>
+          <p style="color:var(--muted);margin-bottom:32px;font-size:15px;">Selecione o serviço para seu agendamento.</p>
+          <div class="services-grid" id="booking-services" style="gap:14px;">
+            <div class="service-card" data-service="Corte & Styling" data-price="120" data-duration="60" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">✂️</div>
                 <span class="service-name" style="font-size:18px;">Corte & Styling</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 120</span><span class="service-duration">60 min</span></div>
             </div>
-            <div class="service-card" data-service="Coloração" data-price="280" data-duration="150" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="service-card" data-service="Coloração" data-price="280" data-duration="150" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">🎨</div>
                 <span class="service-name" style="font-size:18px;">Coloração</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 280</span><span class="service-duration">150 min</span></div>
             </div>
-            <div class="service-card" data-service="Manicure & Pedicure" data-price="85" data-duration="90" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="service-card" data-service="Manicure & Pedicure" data-price="85" data-duration="90" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">💅</div>
                 <span class="service-name" style="font-size:18px;">Manicure & Pedicure</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 85</span><span class="service-duration">90 min</span></div>
             </div>
-            <div class="service-card" data-service="Tratamento Capilar" data-price="160" data-duration="90" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="service-card" data-service="Tratamento Capilar" data-price="160" data-duration="90" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">✨</div>
                 <span class="service-name" style="font-size:18px;">Tratamento Capilar</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 160</span><span class="service-duration">90 min</span></div>
             </div>
-            <div class="service-card" data-service="Maquiagem" data-price="200" data-duration="75" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="service-card" data-service="Maquiagem" data-price="200" data-duration="75" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">🌸</div>
                 <span class="service-name" style="font-size:18px;">Maquiagem</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 200</span><span class="service-duration">75 min</span></div>
             </div>
-            <div class="service-card" data-service="Sobrancelha" data-price="55" data-duration="30" style="padding: 20px;">
-              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="service-card" data-service="Sobrancelha" data-price="55" data-duration="30" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
                 <div class="service-icon" style="width:40px;height:40px;font-size:18px;margin:0;">🧖</div>
                 <span class="service-name" style="font-size:18px;">Sobrancelha</span>
               </div>
               <div class="service-meta"><span class="service-price">R$ 55</span><span class="service-duration">30 min</span></div>
             </div>
           </div>
-          <div style="margin-top: 32px; display:flex; justify-content: flex-end;">
+          <div style="margin-top:32px;display:flex;justify-content:flex-end;">
             <button class="btn btn-primary" id="btn-step1-next">Próximo →</button>
           </div>
         </div>
 
-        <!-- PASSO 2 -->
+        <!-- PASSO 2: Data e horário -->
         <div id="booking-step-2" style="display:none;">
-          <h3 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 8px;">Escolha a data e o horário</h3>
-          <p style="color: var(--muted); margin-bottom: 32px; font-size: 15px;">Selecione o dia e o horário disponível de sua preferência.</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+          <h3 style="font-family:var(--font-display);font-size:28px;margin-bottom:8px;">Escolha a data e o horário</h3>
+          <p style="color:var(--muted);margin-bottom:32px;font-size:15px;">Selecione o dia e o horário disponível de sua preferência.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
             <div>
               <div class="form-label" style="margin-bottom:12px;">📅 Data</div>
               <div class="calendar" id="booking-calendar"></div>
@@ -141,17 +142,17 @@
               <div id="booking-slots"></div>
             </div>
           </div>
-          <div style="margin-top: 32px; display:flex; justify-content: space-between;">
+          <div style="margin-top:32px;display:flex;justify-content:space-between;">
             <button class="btn btn-outline" id="btn-step2-back">← Voltar</button>
             <button class="btn btn-primary" id="btn-step2-next">Próximo →</button>
           </div>
         </div>
 
-        <!-- PASSO 3 -->
+        <!-- PASSO 3: Dados pessoais -->
         <div id="booking-step-3" style="display:none;">
-          <h3 style="font-family: var(--font-display); font-size: 28px; margin-bottom: 8px;">Seus dados</h3>
-          <p style="color: var(--muted); margin-bottom: 32px; font-size: 15px;">Preencha para confirmarmos seu agendamento.</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" id="booking-form">
+          <h3 style="font-family:var(--font-display);font-size:28px;margin-bottom:8px;">Seus dados</h3>
+          <p style="color:var(--muted);margin-bottom:32px;font-size:15px;">Preencha para confirmarmos seu agendamento.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" id="booking-form">
             <div class="form-group">
               <label class="form-label">Nome completo *</label>
               <input type="text" class="form-input" id="booking-name" placeholder="Seu nome" required />
@@ -160,30 +161,30 @@
               <label class="form-label">Telefone *</label>
               <input type="tel" class="form-input" id="booking-phone" placeholder="(11) 99999-9999" data-mask="phone" required />
             </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
+            <div class="form-group" style="grid-column:1/-1;">
               <label class="form-label">E-mail *</label>
               <input type="email" class="form-input" id="booking-email" placeholder="seu@email.com" required />
             </div>
-            <div class="form-group" style="grid-column: 1 / -1;">
+            <div class="form-group" style="grid-column:1/-1;">
               <label class="form-label">Observações</label>
-              <textarea class="form-input" id="booking-notes" rows="3" placeholder="Alguma informação adicional?" style="resize: vertical;"></textarea>
+              <textarea class="form-input" id="booking-notes" rows="3" placeholder="Alguma informação adicional?" style="resize:vertical;"></textarea>
             </div>
           </div>
-          <div style="margin-top: 32px; display:flex; justify-content: space-between;">
+          <div style="margin-top:32px;display:flex;justify-content:space-between;">
             <button class="btn btn-outline" id="btn-step3-back">← Voltar</button>
             <button class="btn btn-primary" id="btn-step3-next">Confirmar Agendamento ✓</button>
           </div>
         </div>
 
-        <!-- PASSO 4 -->
-        <div id="booking-step-4" style="display:none; text-align:center;">
-          <div style="font-size: 72px; margin-bottom: 24px;">🎉</div>
-          <h3 style="font-family: var(--font-display); font-size: 36px; margin-bottom: 12px; color: var(--rose-deep);">Agendamento Confirmado!</h3>
-          <p style="color: var(--muted); font-size: 16px; margin-bottom: 32px; max-width: 400px; margin-left:auto; margin-right:auto;">
-            Enviamos os detalhes para seu e-mail. Até breve no Belezza! 💖
+        <!-- PASSO 4: Confirmação -->
+        <div id="booking-step-4" style="display:none;text-align:center;">
+          <div style="font-size:72px;margin-bottom:24px;">🎉</div>
+          <h3 style="font-family:var(--font-display);font-size:36px;margin-bottom:12px;color:var(--rose-deep);">Agendamento Confirmado!</h3>
+          <p style="color:var(--muted);font-size:16px;margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto;">
+            Enviamos os detalhes para seu e-mail. Até breve no Beleza! 💖
           </p>
-          <div class="card" style="padding: 28px; text-align:left; max-width: 400px; margin: 0 auto 32px; background: var(--rose-pale); border: none;">
-            <div id="booking-summary" style="display:flex; flex-direction:column; gap:12px; font-size:15px;"></div>
+          <div class="card" style="padding:28px;text-align:left;max-width:400px;margin:0 auto 32px;background:var(--rose-pale);border:none;">
+            <div id="booking-summary" style="display:flex;flex-direction:column;gap:12px;font-size:15px;"></div>
           </div>
           <a href="agendamento.html" class="btn btn-primary">Fazer novo agendamento</a>
         </div>
@@ -192,18 +193,18 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-logo">Belezz<span>a</span></div>
+          <div class="footer-logo">Belez<span>a</span></div>
           <p class="footer-desc">Salão de beleza premium no coração de São Paulo.</p>
           <div class="footer-social">
-            <a href="#" class="social-btn">📸</a>
-            <a href="#" class="social-btn">👍</a>
-            <a href="#" class="social-btn">🎵</a>
-            <a href="#" class="social-btn">💬</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Facebook">👍</a>
+            <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+            <a href="https://wa.me/5511999999999" class="social-btn" aria-label="WhatsApp">💬</a>
           </div>
         </div>
         <div>
@@ -216,7 +217,7 @@
         <div>
           <div class="footer-heading">Salão</div>
           <ul class="footer-links">
-            <li><a href="index.html">Início</a></li>
+            <li><a href="home.html">Início</a></li>
             <li><a href="contato.html">Contato</a></li>
           </ul>
         </div>
@@ -229,7 +230,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Belezza. Todos os direitos reservados.</span>
+        <span>© 2025 Beleza. Todos os direitos reservados.</span>
         <span>Feito com 💖 em São Paulo</span>
       </div>
     </div>
@@ -241,106 +242,150 @@
 
   <script src="script.js"></script>
   <script>
-    const bookingState = { service: null, servicePrice: 0, date: null, time: null };
+    // Estado global do agendamento
+    const bookingState = {
+      service:      null,
+      servicePrice: 0,
+      date:         null,
+      time:         null
+    };
 
-    // Pre-select service from URL param
-    const urlParams = new URLSearchParams(window.location.search);
+    // Pré-seleciona serviço via URL param (?servico=...)
+    const urlParams  = new URLSearchParams(window.location.search);
     const preServico = urlParams.get('servico');
 
     document.querySelectorAll('#booking-services .service-card').forEach(card => {
       if (preServico && card.dataset.service === decodeURIComponent(preServico)) {
-        card.style.outline = '2.5px solid var(--rose-deep)';
-        card.style.background = 'var(--rose-pale)';
-        bookingState.service = card.dataset.service;
+        selectCard(card);
+        bookingState.service      = card.dataset.service;
         bookingState.servicePrice = parseInt(card.dataset.price);
       }
+
       card.addEventListener('click', () => {
-        document.querySelectorAll('#booking-services .service-card').forEach(c => {
-          c.style.outline = ''; c.style.background = '';
-        });
-        card.style.outline = '2.5px solid var(--rose-deep)';
-        card.style.background = 'var(--rose-pale)';
-        bookingState.service = card.dataset.service;
+        document.querySelectorAll('#booking-services .service-card').forEach(c => deselectCard(c));
+        selectCard(card);
+        bookingState.service      = card.dataset.service;
         bookingState.servicePrice = parseInt(card.dataset.price);
       });
     });
 
+    function selectCard(card) {
+      card.style.outline    = '2.5px solid var(--rose-deep)';
+      card.style.background = 'var(--rose-pale)';
+    }
+
+    function deselectCard(card) {
+      card.style.outline    = '';
+      card.style.background = '';
+    }
+
+    // Botão próximo - passo 1
     document.getElementById('btn-step1-next').addEventListener('click', () => {
-      if (!bookingState.service) { Belezza.showToast('Selecione um serviço para continuar.', 'warning'); return; }
+      if (!bookingState.service) {
+        Beleza.showToast('Selecione um serviço para continuar.', 'warning');
+        return;
+      }
       goToStep(2);
     });
 
-    const cal = new Belezza.Calendar('#booking-calendar', {
+    // Calendário
+    const cal = new Beleza.Calendar('#booking-calendar', {
       disablePast: true,
-      onSelect(date) { bookingState.date = date; renderSlots(); }
+      onSelect(date) {
+        bookingState.date = date;
+        renderSlots();
+      }
     });
 
+    // Renderiza slots de horário
     function renderSlots() {
-      new Belezza.SlotPicker('#booking-slots', {
-        unavailable: ['09:00','11:30','14:00','16:30'],
+      new Beleza.SlotPicker('#booking-slots', {
+        unavailable: ['09:00', '11:30', '14:00', '16:30'],
         onSelect(time) { bookingState.time = time; }
       });
     }
 
+    // Passo 2
     document.getElementById('btn-step2-back').addEventListener('click', () => goToStep(1));
     document.getElementById('btn-step2-next').addEventListener('click', () => {
-      if (!bookingState.date) { Belezza.showToast('Selecione uma data.', 'warning'); return; }
-      if (!bookingState.time) { Belezza.showToast('Selecione um horário.', 'warning'); return; }
-      // Auto-fill if user is logged in
-      const user = Belezza.getUser();
+      if (!bookingState.date) { Beleza.showToast('Selecione uma data.', 'warning'); return; }
+      if (!bookingState.time) { Beleza.showToast('Selecione um horário.', 'warning'); return; }
+
+      // Auto-preenche se usuário estiver logado
+      const user = Beleza.getUser();
       if (user) {
-        document.getElementById('booking-name').value = user.name || '';
+        document.getElementById('booking-name').value  = user.name  || '';
         document.getElementById('booking-email').value = user.email || '';
         if (user.phone) document.getElementById('booking-phone').value = user.phone;
       }
+
       goToStep(3);
     });
 
+    // Passo 3
     document.getElementById('btn-step3-back').addEventListener('click', () => goToStep(2));
     document.getElementById('btn-step3-next').addEventListener('click', () => {
       const name  = document.getElementById('booking-name').value.trim();
       const phone = document.getElementById('booking-phone').value.trim();
       const email = document.getElementById('booking-email').value.trim();
-      if (!name || !phone || !email) { Belezza.showToast('Preencha todos os campos obrigatórios.', 'warning'); return; }
+
+      if (!name || !phone || !email) {
+        Beleza.showToast('Preencha todos os campos obrigatórios.', 'warning');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        Beleza.showToast('E-mail inválido.', 'error');
+        return;
+      }
+
+      // Monta resumo
       document.getElementById('booking-summary').innerHTML = `
         <div>👩 <strong>${name}</strong></div>
         <div>✂️ ${bookingState.service}</div>
-        <div>📅 ${Belezza.formatDate(bookingState.date)}</div>
+        <div>📅 ${Beleza.formatDate(bookingState.date)}</div>
         <div>⏰ ${bookingState.time}</div>
-        <div>💰 ${Belezza.formatCurrency(bookingState.servicePrice)}</div>
+        <div>💰 ${Beleza.formatCurrency(bookingState.servicePrice)}</div>
         <div>📞 ${phone}</div>
       `;
-      // Save to localStorage
-      const agendamentos = JSON.parse(localStorage.getItem('belezza_agendamentos') || '[]');
+
+      // Salva no localStorage (futuramente: POST para API Spring Boot)
+      const agendamentos = JSON.parse(localStorage.getItem('beleza_agendamentos') || '[]');
       agendamentos.push({
-        id: Date.now(),
-        service: bookingState.service,
-        price: bookingState.servicePrice,
-        date: bookingState.date.toISOString(),
-        time: bookingState.time,
+        id:       Date.now(),
+        service:  bookingState.service,
+        price:    bookingState.servicePrice,
+        date:     bookingState.date.toISOString(),
+        time:     bookingState.time,
         name, phone, email,
-        status: 'confirmado'
+        status:   'confirmado'
       });
-      localStorage.setItem('belezza_agendamentos', JSON.stringify(agendamentos));
+      localStorage.setItem('beleza_agendamentos', JSON.stringify(agendamentos));
+
       goToStep(4);
-      Belezza.showToast('Agendamento confirmado com sucesso! 🎉', 'success');
+      Beleza.showToast('Agendamento confirmado com sucesso! 🎉', 'success');
     });
 
+    // Navega entre etapas
     function goToStep(n) {
-      [1,2,3,4].forEach(i => {
+      [1, 2, 3, 4].forEach(i => {
         document.getElementById(`booking-step-${i}`).style.display = i === n ? 'block' : 'none';
+
         const circle = document.getElementById(`step-${i}`);
-        circle.classList.remove('active','done');
+        circle.classList.remove('active', 'done');
         if (i < n)  circle.classList.add('done');
         if (i === n) circle.classList.add('active');
       });
-      [1,2,3].forEach(i => {
+
+      [1, 2, 3].forEach(i => {
         const line = document.getElementById(`line-${i}`);
         if (line) line.classList.toggle('done', i < n);
       });
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Inicializa slots
     renderSlots();
   </script>
 </body>

@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belezza — Salão de Beleza</title>
-  <meta name="description" content="Belezza – Experiência única em beleza e bem-estar. Agende seu horário online." />
+  <title>Beleza — Salão Premium de Beleza Feminina</title>
+  <meta name="description" content="Beleza: plataforma premium de agendamento para salão feminino. Agende online 24h, escolha sua profissional favorita." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- ── Navbar ── -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">Belezz<span>a</span></a>
+      <a href="home.html" class="navbar-logo">Beleza<span>.</span></a>
       <ul class="navbar-links">
-        <li><a href="index.html">Início</a></li>
+        <li><a href="home.html">Início</a></li>
         <li><a href="servicos.html">Serviços</a></li>
         <li><a href="equipe.html">Equipe</a></li>
         <li><a href="agendamento.html">Agendamento</a></li>
@@ -23,314 +23,315 @@
       <div class="navbar-actions">
         <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
       </div>
-      <button class="menu-toggle" aria-label="Menu">
+      <button class="navbar-burger" id="navbar-burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg-pattern"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="container">
+  <!-- Mobile Drawer -->
+  <div class="navbar-drawer" id="navbar-drawer">
+    <a href="home.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="equipe.html">Equipe</a>
+    <a href="agendamento.html">Agendamento</a>
+    <a href="contato.html">Contato</a>
+    <div class="drawer-cta">
+      <a href="login.html" class="btn btn-primary" style="justify-content:center;">Entrar</a>
+    </div>
+  </div>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-eyebrow">Salão Premium — São Paulo</div>
-        <h1 class="hero-title">
-          Realce sua
-          <em>beleza natural</em>
+        <div class="hero-badge fade-up">
+          <span>✨</span> Salão Premium #1 em SP
+        </div>
+        <h1 class="hero-title fade-up delay-1">
+          Sua beleza,<br>
+          <em>nossa</em><br>
+          <span>paixão.</span>
         </h1>
-        <p class="hero-subtitle">
-          Experiências exclusivas de beleza e bem-estar com as melhores profissionais da cidade. Porque você merece se sentir incrível todos os dias.
+        <p class="hero-desc fade-up delay-2">
+          Agende seus serviços favoritos online, a qualquer hora. Escolha sua profissional, confirme em segundos e relaxe — nós cuidamos de tudo.
         </p>
-        <div class="hero-actions">
-          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Horário</a>
-          <a href="servicos.html" class="btn btn-ghost">Ver Serviços</a>
+        <div class="hero-actions fade-up delay-3">
+          <a href="agendamento.html" class="btn btn-primary btn-lg">
+            Agendar agora
+          </a>
+          <a href="servicos.html" class="btn btn-ghost btn-lg">
+            Ver serviços →
+          </a>
+        </div>
+        <div class="hero-stats fade-up delay-4">
+          <div>
+            <div class="hero-stat-num">5k+</div>
+            <div class="hero-stat-label">Clientes felizes</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">12+</div>
+            <div class="hero-stat-label">Anos de mercado</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">98%</div>
+            <div class="hero-stat-label">Satisfação</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-in delay-2">
+        <div class="hero-card-main">
+          <div class="hero-card-header">
+            <div class="hero-card-title">Próximos agendamentos</div>
+            <div class="hero-card-badge">Hoje</div>
+          </div>
+
+          <div class="hero-appointment">
+            <div class="hero-appt-avatar a1">💅</div>
+            <div>
+              <div class="hero-appt-name">Ana Paula</div>
+              <div class="hero-appt-service">Manicure Gel + Unhas</div>
+            </div>
+            <div class="hero-appt-time">09:30</div>
+          </div>
+
+          <div class="hero-appointment">
+            <div class="hero-appt-avatar a2">✂️</div>
+            <div>
+              <div class="hero-appt-name">Mariana Costa</div>
+              <div class="hero-appt-service">Corte + Escova</div>
+            </div>
+            <div class="hero-appt-time">11:00</div>
+          </div>
+
+          <div class="hero-appointment">
+            <div class="hero-appt-avatar a3">🌿</div>
+            <div>
+              <div class="hero-appt-name">Fernanda Lima</div>
+              <div class="hero-appt-service">Tratamento Capilar</div>
+            </div>
+            <div class="hero-appt-time">14:30</div>
+          </div>
+        </div>
+
+        <div class="hero-floating-card fc1">
+          <div style="font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px;">Avaliação do dia</div>
+          <div style="font-size:22px; letter-spacing:2px; color:var(--gold);">★★★★★</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.9 · 847 avaliações</div>
+        </div>
+
+        <div class="hero-floating-card fc2">
+          <div style="font-size:28px; margin-bottom:4px;">🎉</div>
+          <div style="font-size:13px; font-weight:700; color:var(--dark);">Novo agendamento!</div>
+          <div style="font-size:12px; color:var(--muted);">Camila · Coloração</div>
         </div>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-number">12+</div>
-        <div class="hero-stat-label">Anos de Experiência</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">5k+</div>
-        <div class="hero-stat-label">Clientes Felizes</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">98%</div>
-        <div class="hero-stat-label">Satisfação</div>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      <span>scroll</span>
-    </div>
   </section>
 
-  <!-- SERVIÇOS DESTAQUE -->
-  <section class="section" id="servicos">
+  <!-- ── Features ── -->
+  <section class="section" style="background: var(--white);">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">O que oferecemos</span>
-        <h2 class="section-title">Nossos <em>Serviços</em></h2>
-        <p style="color: var(--muted); font-size: 16px; max-width: 500px; margin-top: 12px;">
-          Cada serviço é pensado para proporcionar uma experiência única de cuidado e beleza.
-        </p>
+        <p class="section-label">Por que nos escolher</p>
+        <h2 class="fade-up">Experiência premium <em style="font-style:italic;">do início ao fim</em></h2>
+        <p class="fade-up delay-1">Tecnologia e carinho em cada etapa da sua jornada de beleza.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-up delay-1">
+          <span class="feature-icon">📅</span>
+          <div class="feature-title">Agendamento Online</div>
+          <p class="feature-text">Agende 24h por dia, 7 dias por semana, sem precisar ligar.</p>
+        </div>
+        <div class="feature-card fade-up delay-2">
+          <span class="feature-icon">💅</span>
+          <div class="feature-title">Profissionais Top</div>
+          <p class="feature-text">Equipe certificada e especializada em tendências internacionais.</p>
+        </div>
+        <div class="feature-card fade-up delay-3">
+          <span class="feature-icon">🔔</span>
+          <div class="feature-title">Lembretes Automáticos</div>
+          <p class="feature-text">Receba notificações antes do seu horário. Nunca mais esqueça.</p>
+        </div>
+        <div class="feature-card fade-up delay-4">
+          <span class="feature-icon">⭐</span>
+          <div class="feature-title">Histórico Completo</div>
+          <p class="feature-text">Veja todos os seus serviços, favoritas e próximas visitas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Serviços Destaque ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Nossos serviços</p>
+        <h2 class="fade-up">Feito para <em style="font-style:italic;">você brilhar</em></h2>
       </div>
       <div class="services-grid">
-        <div class="service-card" onclick="location.href='servicos.html'">
-          <div class="service-icon">✂️</div>
-          <div class="service-name">Corte & Styling</div>
-          <p class="service-desc">Cortes modernos e clássicos, adaptados ao seu rosto e estilo de vida.</p>
+        <div class="service-card fade-up delay-1">
+          <span class="service-icon">✂️</span>
+          <div class="service-name">Corte & Escova</div>
+          <p class="service-desc">Transforme seu visual com cortes modernos e acabamento profissional de alta performance.</p>
           <div class="service-meta">
-            <span class="service-price">R$ 120</span>
-            <span class="service-duration">⏱ 60 min</span>
+            <div class="service-price">R$ 89 <span>/ sessão</span></div>
+            <div class="service-duration">⏱ 60 min</div>
           </div>
         </div>
-        <div class="service-card" onclick="location.href='servicos.html'">
-          <div class="service-icon">🎨</div>
+        <div class="service-card fade-up delay-2">
+          <span class="service-icon">🎨</span>
           <div class="service-name">Coloração</div>
-          <p class="service-desc">Técnicas avançadas de coloração, mechas e balayage com produtos premium.</p>
+          <p class="service-desc">Mechas, ombre, balayage e colorações exclusivas com técnicas internacionais.</p>
           <div class="service-meta">
-            <span class="service-price">R$ 280</span>
-            <span class="service-duration">⏱ 150 min</span>
+            <div class="service-price">R$ 199 <span>/ sessão</span></div>
+            <div class="service-duration">⏱ 120 min</div>
           </div>
         </div>
-        <div class="service-card" onclick="location.href='servicos.html'">
-          <div class="service-icon">💅</div>
+        <div class="service-card fade-up delay-3">
+          <span class="service-icon">💅</span>
           <div class="service-name">Manicure & Pedicure</div>
-          <p class="service-desc">Unhas impecáveis com esmaltes de longa duração e cuidados completos.</p>
+          <p class="service-desc">Unhas impecáveis com gel, fibra, acrigel e esmaltes premium importados.</p>
           <div class="service-meta">
-            <span class="service-price">R$ 85</span>
-            <span class="service-duration">⏱ 90 min</span>
+            <div class="service-price">R$ 79 <span>/ sessão</span></div>
+            <div class="service-duration">⏱ 90 min</div>
           </div>
         </div>
       </div>
-      <div style="margin-top: 48px; text-align: center;">
-        <a href="servicos.html" class="btn btn-outline" style="color: var(--rose-deep);">Ver todos os serviços →</a>
+      <div style="text-align:center; margin-top:48px;" class="fade-up">
+        <a href="servicos.html" class="btn btn-secondary btn-lg">Ver todos os serviços</a>
       </div>
     </div>
   </section>
 
-  <!-- EQUIPE DESTAQUE -->
-  <section class="section team-section">
+  <!-- ── Testimonials ── -->
+  <section class="section" style="background: var(--cream);">
     <div class="container">
-      <div class="section-header text-center">
-        <span class="section-label">Conheça as especialistas</span>
-        <h2 class="section-title">Nossa <em>Equipe</em></h2>
+      <div class="section-header">
+        <p class="section-label">Depoimentos</p>
+        <h2 class="fade-up">O que nossas <em style="font-style:italic;">clientes dizem</em></h2>
       </div>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-light), var(--nude));">👩‍🦱</div>
-            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
-          </div>
-          <div class="team-info">
-            <div class="team-name">Camila Ferreira</div>
-            <div class="team-role">Diretora & Colorista</div>
-            <div class="team-specialties"><span class="tag">Balayage</span><span class="tag">Coloração</span><span class="tag">Cortes</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--lilac-light), var(--rose-light));">👩‍🦰</div>
-            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
-          </div>
-          <div class="team-info">
-            <div class="team-name">Juliana Santos</div>
-            <div class="team-role">Especialista Capilar</div>
-            <div class="team-specialties"><span class="tag">Tratamentos</span><span class="tag">Cachos</span><span class="tag">Progressiva</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--nude-light), var(--lilac-light));">👩</div>
-            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
-          </div>
-          <div class="team-info">
-            <div class="team-name">Brenda Lima</div>
-            <div class="team-role">Manicure & Nail Artist</div>
-            <div class="team-specialties"><span class="tag">Gel</span><span class="tag">Nail Art</span><span class="tag">Fibra</span></div>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-pale), var(--nude-light));">👩‍🦳</div>
-            <div class="team-photo-overlay"><a href="agendamento.html" class="btn btn-ghost btn-sm">Agendar</a></div>
-          </div>
-          <div class="team-info">
-            <div class="team-name">Patrícia Moura</div>
-            <div class="team-role">Maquiadora & Designer</div>
-            <div class="team-specialties"><span class="tag">Noivas</span><span class="tag">Festas</span><span class="tag">Sobrancelha</span></div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top: 48px; text-align: center;">
-        <a href="equipe.html" class="btn btn-outline" style="color: var(--rose-deep);">Conhecer toda a equipe →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEPOIMENTOS -->
-  <section class="testimonials-section">
-    <div class="container">
-      <div class="section-header text-center">
-        <span class="section-label">O que dizem sobre nós</span>
-        <h2 class="section-title">Depoimentos <em>reais</em></h2>
-      </div>
-    </div>
-    <div style="overflow: hidden; margin-top: 48px;">
       <div class="testimonials-track">
-        <div class="testimonial-card">
+        <div class="testimonial-card fade-up delay-1">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Melhor salão que já fui! A Camila entendeu exatamente o que eu queria. Saí completamente transformada e apaixonada pelo resultado."</p>
+          <p class="testimonial-text">Melhor salão que já fui! A equipe é super atenciosa, o ambiente é lindo e meu cabelo ficou incrível. Já indiquei para todas as amigas!</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">A</div>
-            <div><div class="testimonial-name">Ana Paula Costa</div><div class="testimonial-date">Março 2025</div></div>
+            <div class="testimonial-avatar" style="background: var(--blush); font-size:22px;">👩🏽</div>
+            <div>
+              <div class="testimonial-name">Ana Paula S.</div>
+              <div class="testimonial-role">Cliente há 3 anos</div>
+            </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card fade-up delay-2">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Fiz o balayage com a Camila e ficou perfeito! O ambiente é lindo, as meninas são super atenciosas. Já indiquei para todas as amigas."</p>
+          <p class="testimonial-text">O sistema de agendamento online é maravilhoso! Agendar em 3 cliques e escolher minha profissional favorita faz toda a diferença.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">M</div>
-            <div><div class="testimonial-name">Marina Alves</div><div class="testimonial-date">Fevereiro 2025</div></div>
+            <div class="testimonial-avatar" style="background: #FFF8E7; font-size:22px;">👩🏻</div>
+            <div>
+              <div class="testimonial-name">Mariana C.</div>
+              <div class="testimonial-role">Cliente há 1 ano</div>
+            </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card fade-up delay-3">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"A Brenda é uma artista! Minhas unhas nunca ficaram tão bonitas. Atendimento impecável do início ao fim. Voltarei sempre!"</p>
+          <p class="testimonial-text">Profissionalismo impecável! Minha coloração ficou exatamente como eu queria. Com certeza voltarei sempre. Recomendo demais!</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">F</div>
-            <div><div class="testimonial-name">Fernanda Rocha</div><div class="testimonial-date">Janeiro 2025</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Fiz maquiagem de noiva com a Patrícia e me senti uma princesa! Durou o dia todo e ficou ainda mais linda nas fotos. Recomendo demais!"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">L</div>
-            <div><div class="testimonial-name">Larissa Mendes</div><div class="testimonial-date">Dezembro 2024</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Tratamento capilar incrível! Meu cabelo estava muito danificado e a Juliana fez um milagre. Brilhante, hidratado e sem frizz. Amei!"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">R</div>
-            <div><div class="testimonial-name">Rebeca Souza</div><div class="testimonial-date">Novembro 2024</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Agendamento super fácil pelo site, pontualidade perfeita e resultado acima das expectativas. O Belezza é referência em qualidade!"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">C</div>
-            <div><div class="testimonial-name">Carla Rodrigues</div><div class="testimonial-date">Outubro 2024</div></div>
-          </div>
-        </div>
-        <!-- duplicados -->
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Melhor salão que já fui! A Camila entendeu exatamente o que eu queria. Saí completamente transformada e apaixonada pelo resultado."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">A</div>
-            <div><div class="testimonial-name">Ana Paula Costa</div><div class="testimonial-date">Março 2025</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Fiz o balayage com a Camila e ficou perfeito! O ambiente é lindo, as meninas são super atenciosas. Já indiquei para todas as amigas."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">M</div>
-            <div><div class="testimonial-name">Marina Alves</div><div class="testimonial-date">Fevereiro 2025</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"A Brenda é uma artista! Minhas unhas nunca ficaram tão bonitas. Atendimento impecável do início ao fim. Voltarei sempre!"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">F</div>
-            <div><div class="testimonial-name">Fernanda Rocha</div><div class="testimonial-date">Janeiro 2025</div></div>
+            <div class="testimonial-avatar" style="background: #ECFDF5; font-size:22px;">👩🏾</div>
+            <div>
+              <div class="testimonial-name">Fernanda L.</div>
+              <div class="testimonial-role">Cliente há 2 anos</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="orb orb-1"></div>
+  <!-- ── CTA ── -->
+  <section class="section">
     <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">Pronta para se <em>sentir incrível?</em></h2>
-        <p class="cta-subtitle">Agende agora mesmo e venha viver a experiência Belezza. Seu momento merece ser especial.</p>
-        <div class="cta-actions">
-          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Agora</a>
-          <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-ghost btn-lg">💬 WhatsApp</a>
+      <div class="cta-section fade-up">
+        <h2>Pronta para se <em style="font-style:italic;">transformar?</em></h2>
+        <p>Agende agora mesmo e viva a experiência Beleza. Seu horário preferido está esperando por você.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="agendamento.html" class="btn btn-primary btn-lg">
+            Agendar meu horário
+          </a>
+          <a href="contato.html" class="btn btn-outline btn-lg" style="color:rgba(255,255,255,0.8); border-color:rgba(255,255,255,0.25);">
+            Falar conosco
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contato">
+  <!-- ── Footer ── -->
+  <footer>
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top">
         <div>
-          <div class="footer-logo">Belezz<span>a</span></div>
-          <p class="footer-desc">Salão de beleza premium no coração de São Paulo. Experiências únicas de beleza e bem-estar desde 2013.</p>
+          <div class="footer-brand-logo">Beleza<span>.</span></div>
+          <p class="footer-brand-desc">Plataforma premium de agendamento para salão feminino. Tecnologia e cuidado em cada detalhe.</p>
           <div class="footer-social">
-            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
-            <a href="#" class="social-btn" aria-label="Facebook">👍</a>
-            <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
-            <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+            <div class="footer-social-btn" title="Instagram">📸</div>
+            <div class="footer-social-btn" title="WhatsApp">💬</div>
+            <div class="footer-social-btn" title="Facebook">📘</div>
+            <div class="footer-social-btn" title="TikTok">🎵</div>
           </div>
         </div>
         <div>
-          <div class="footer-heading">Serviços</div>
-          <ul class="footer-links">
-            <li><a href="servicos.html">Corte & Styling</a></li>
-            <li><a href="servicos.html">Coloração</a></li>
-            <li><a href="servicos.html">Manicure</a></li>
-            <li><a href="servicos.html">Tratamentos</a></li>
-            <li><a href="servicos.html">Maquiagem</a></li>
-          </ul>
+          <div class="footer-col-title">Serviços</div>
+          <div class="footer-links">
+            <a href="servicos.html">Corte & Escova</a>
+            <a href="servicos.html">Coloração</a>
+            <a href="servicos.html">Manicure & Pedicure</a>
+            <a href="servicos.html">Tratamentos</a>
+            <a href="servicos.html">Maquiagem</a>
+          </div>
         </div>
         <div>
-          <div class="footer-heading">Salão</div>
-          <ul class="footer-links">
-            <li><a href="equipe.html">Nossa Equipe</a></li>
-            <li><a href="index.html#depoimentos">Depoimentos</a></li>
-            <li><a href="agendamento.html">Agendar Online</a></li>
-            <li><a href="#">Política de Privacidade</a></li>
-          </ul>
+          <div class="footer-col-title">Empresa</div>
+          <div class="footer-links">
+            <a href="equipe.html">Nossa Equipe</a>
+            <a href="home.html">Sobre Nós</a>
+            <a href="contato.html">Contato</a>
+            <a href="agendamento.html">Agendamento</a>
+          </div>
         </div>
         <div>
-          <div class="footer-heading">Contato</div>
-          <ul class="footer-links">
-            <li><a href="contato.html">📍 Rua Augusta, 1200 – Jardins, SP</a></li>
-            <li><a href="tel:+5511999999999">📞 (11) 99999-9999</a></li>
-            <li><a href="mailto:contato@belezza.com.br">✉️ contato@belezza.com.br</a></li>
-            <li style="color: rgba(255,255,255,0.4); font-size: 14px; padding-top: 4px;">Seg–Sáb: 9h às 19h</li>
-          </ul>
+          <div class="footer-col-title">Contato</div>
+          <div class="footer-links">
+            <a href="#">📍 Av. Paulista, 1000 — SP</a>
+            <a href="tel:+5511999999999">📞 (11) 99999-9999</a>
+            <a href="mailto:oi@beleza.com.br">✉️ oi@beleza.com.br</a>
+            <a href="#">🕐 Seg–Sáb: 9h–19h</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Belezza. Todos os direitos reservados.</span>
-        <span>Feito com 💖 em São Paulo</span>
+        <span>© 2025 Beleza. Todos os direitos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacidade</a>
+          <a href="#">Termos</a>
+          <a href="#">Cookies</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
-  <div class="whatsapp-float">
-    <div class="whatsapp-bubble">Oi! Posso te ajudar? 💬</div>
-    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">💬</a>
-  </div>
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20um%20horário." 
+     class="whatsapp-float" target="_blank" rel="noopener">
+    <span class="wpp-icon">💬</span>
+    <span class="wpp-text">WhatsApp</span>
+  </a>
 
   <script src="script.js"></script>
 </body>

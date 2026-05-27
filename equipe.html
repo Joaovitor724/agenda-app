@@ -3,63 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belezza — Nossa Equipe</title>
+  <title>Beleza — Nossa Equipe</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .team-card-full {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      transition: var(--transition);
-      display: grid;
-      grid-template-columns: 260px 1fr;
-    }
-    .team-card-full:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .team-card-full .team-photo {
-      height: 100%;
-      min-height: 260px;
-    }
-    .team-card-full .team-details {
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .team-stat-row {
-      display: flex;
-      gap: 24px;
-      padding: 16px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .team-stat-item { text-align: center; }
-    .team-stat-value {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--charcoal);
-    }
-    .team-stat-key {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    @media (max-width: 768px) {
-      .team-card-full { grid-template-columns: 1fr; }
-      .team-card-full .team-photo { min-height: 220px; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">Belezz<span>a</span></a>
+      <a href="home.html" class="navbar-logo">Beleza<span>.</span></a>
       <ul class="navbar-links">
-        <li><a href="index.html">Início</a></li>
+        <li><a href="home.html">Início</a></li>
         <li><a href="servicos.html">Serviços</a></li>
         <li><a href="equipe.html">Equipe</a></li>
         <li><a href="agendamento.html">Agendamento</a></li>
@@ -68,190 +21,104 @@
       <div class="navbar-actions">
         <a href="login.html" class="btn btn-primary btn-sm">Entrar</a>
       </div>
-      <button class="menu-toggle" aria-label="Menu">
+      <button class="navbar-burger" id="navbar-burger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="orb orb-1"></div>
-    <div class="container">
-      <div class="page-hero-content">
-        <div class="breadcrumb">
-          <a href="index.html">Início</a>
-          <span>›</span>
-          <span>Equipe</span>
-        </div>
-        <h1 class="page-hero-title">Nossa <em>Equipe</em></h1>
-        <p class="page-hero-subtitle">Profissionais apaixonadas por beleza, dedicadas a transformar e valorizar cada cliente.</p>
-      </div>
+  <div class="navbar-drawer" id="navbar-drawer">
+    <a href="home.html">Início</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="equipe.html">Equipe</a>
+    <a href="agendamento.html">Agendamento</a>
+    <a href="contato.html">Contato</a>
+    <div class="drawer-cta">
+      <a href="login.html" class="btn btn-primary" style="justify-content:center;">Entrar</a>
     </div>
-  </section>
+  </div>
 
-  <!-- TEAM -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">Nossa equipe</p>
+      <h1 class="fade-up">Especialistas em <em style="font-style:italic; color:var(--rose-deep);">fazer você brilhar</em></h1>
+      <p class="fade-up delay-1">Profissionais certificadas e apaixonadas pelo que fazem. Cada uma com uma especialidade única para cuidar de você.</p>
+    </div>
+  </div>
+
   <section class="section">
     <div class="container">
-      <div style="display: flex; flex-direction: column; gap: 32px;">
+      <div class="team-grid">
 
-        <!-- Camila -->
-        <div class="team-card-full">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-light), var(--nude)); height: 100%; font-size: 80px;">👩‍🦱</div>
-          </div>
-          <div class="team-details">
-            <div>
-              <div class="team-name" style="font-size: 32px;">Camila Ferreira</div>
-              <div class="team-role">Diretora & Colorista Sênior</div>
-            </div>
-            <p style="font-size: 15px; color: var(--muted); line-height: 1.8;">
-              Com mais de 12 anos de experiência, Camila é a fundadora do Belezza e especialista em técnicas de coloração modernas. Formada em Paris e certificada pelas principais marcas de produtos capilares do mundo.
-            </p>
-            <div class="team-stat-row">
-              <div class="team-stat-item">
-                <div class="team-stat-value">12+</div>
-                <div class="team-stat-key">Anos de exp.</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">2k+</div>
-                <div class="team-stat-key">Clientes</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">5★</div>
-                <div class="team-stat-key">Avaliação</div>
-              </div>
-            </div>
-            <div class="team-specialties">
-              <span class="tag">Balayage</span>
-              <span class="tag">Coloração</span>
-              <span class="tag">Cortes</span>
-              <span class="tag">Mechas</span>
-              <span class="tag">Ombre</span>
-            </div>
-            <div>
-              <a href="agendamento.html?profissional=Camila+Ferreira" class="btn btn-primary btn-sm">Agendar com Camila</a>
-            </div>
+        <div class="team-card fade-up delay-1">
+          <div class="team-card-photo t1">👩🏽‍🦱</div>
+          <div class="team-card-body">
+            <div class="team-name">Juliana Mendes</div>
+            <div class="team-role">Diretora & Colorista</div>
+            <p class="team-bio">12 anos de experiência com formação em Paris e técnicas exclusivas de balayage. Especialista em transformações radicais e colorações artísticas.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.9 · 312 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Juliana</a>
           </div>
         </div>
 
-        <!-- Juliana -->
-        <div class="team-card-full">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--lilac-light), var(--rose-light)); height: 100%; font-size: 80px;">👩‍🦰</div>
-          </div>
-          <div class="team-details">
-            <div>
-              <div class="team-name" style="font-size: 32px;">Juliana Santos</div>
-              <div class="team-role">Especialista Capilar</div>
-            </div>
-            <p style="font-size: 15px; color: var(--muted); line-height: 1.8;">
-              Juliana é referência em saúde capilar e especialista em cabelos cacheados. Sua abordagem holística combina diagnóstico profundo com protocolos exclusivos de tratamento, devolvendo a vitalidade ao cabelo.
-            </p>
-            <div class="team-stat-row">
-              <div class="team-stat-item">
-                <div class="team-stat-value">8+</div>
-                <div class="team-stat-key">Anos de exp.</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">1.5k+</div>
-                <div class="team-stat-key">Clientes</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">5★</div>
-                <div class="team-stat-key">Avaliação</div>
-              </div>
-            </div>
-            <div class="team-specialties">
-              <span class="tag">Tratamentos</span>
-              <span class="tag">Cachos</span>
-              <span class="tag">Progressiva</span>
-              <span class="tag">Botox Capilar</span>
-              <span class="tag">Hidratação</span>
-            </div>
-            <div>
-              <a href="agendamento.html?profissional=Juliana+Santos" class="btn btn-primary btn-sm">Agendar com Juliana</a>
-            </div>
+        <div class="team-card fade-up delay-2">
+          <div class="team-card-photo t2">👩🏻‍🦳</div>
+          <div class="team-card-body">
+            <div class="team-name">Carolina Lima</div>
+            <div class="team-role">Cabeleireira & Trancista</div>
+            <p class="team-bio">Especialista em cabelos afro e transição capilar. Certificada em trançados, nagô e técnicas de cuidado e fortalecimento dos fios.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.8 · 208 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Carolina</a>
           </div>
         </div>
 
-        <!-- Brenda -->
-        <div class="team-card-full">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--nude-light), var(--lilac-light)); height: 100%; font-size: 80px;">👩</div>
-          </div>
-          <div class="team-details">
-            <div>
-              <div class="team-name" style="font-size: 32px;">Brenda Lima</div>
-              <div class="team-role">Manicure & Nail Artist</div>
-            </div>
-            <p style="font-size: 15px; color: var(--muted); line-height: 1.8;">
-              Brenda transforma unhas em verdadeiras obras de arte. Com técnica apurada em nail art, gel e fibra, ela acompanha as últimas tendências mundiais e cria designs exclusivos para cada cliente.
-            </p>
-            <div class="team-stat-row">
-              <div class="team-stat-item">
-                <div class="team-stat-value">6+</div>
-                <div class="team-stat-key">Anos de exp.</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">900+</div>
-                <div class="team-stat-key">Clientes</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">5★</div>
-                <div class="team-stat-key">Avaliação</div>
-              </div>
-            </div>
-            <div class="team-specialties">
-              <span class="tag">Gel</span>
-              <span class="tag">Nail Art</span>
-              <span class="tag">Fibra</span>
-              <span class="tag">Acrílico</span>
-              <span class="tag">Press-on</span>
-            </div>
-            <div>
-              <a href="agendamento.html?profissional=Brenda+Lima" class="btn btn-primary btn-sm">Agendar com Brenda</a>
-            </div>
+        <div class="team-card fade-up delay-3">
+          <div class="team-card-photo t3">👩🏾‍🦰</div>
+          <div class="team-card-body">
+            <div class="team-name">Amanda Souza</div>
+            <div class="team-role">Nail Designer</div>
+            <p class="team-bio">Campeã regional de nail art 2023. Especialista em unhas em gel, acrigel e nail art 3D. Cada detalhe é uma obra de arte nas suas unhas.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">5.0 · 189 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Amanda</a>
           </div>
         </div>
 
-        <!-- Patrícia -->
-        <div class="team-card-full">
-          <div class="team-photo">
-            <div class="team-photo-bg" style="background: linear-gradient(135deg, var(--rose-pale), var(--nude-light)); height: 100%; font-size: 80px;">👩‍🦳</div>
+        <div class="team-card fade-up delay-4">
+          <div class="team-card-photo t4">👩🏼</div>
+          <div class="team-card-body">
+            <div class="team-name">Beatriz Rocha</div>
+            <div class="team-role">Maquiadora & Skincare</div>
+            <p class="team-bio">Maquiadora profissional com vasta experiência em produções para casamentos, editoriais e eventos. Especialista em airbrush e skincare avançado.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.9 · 156 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Beatriz</a>
           </div>
-          <div class="team-details">
-            <div>
-              <div class="team-name" style="font-size: 32px;">Patrícia Moura</div>
-              <div class="team-role">Maquiadora & Designer de Sobrancelhas</div>
-            </div>
-            <p style="font-size: 15px; color: var(--muted); line-height: 1.8;">
-              Patrícia é especialista em maquiagem para noivas e eventos sociais. Seu olho clínico para design de sobrancelhas e domínio de técnicas artísticas fazem dela uma das mais requisitadas da cidade.
-            </p>
-            <div class="team-stat-row">
-              <div class="team-stat-item">
-                <div class="team-stat-value">9+</div>
-                <div class="team-stat-key">Anos de exp.</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">1.2k+</div>
-                <div class="team-stat-key">Clientes</div>
-              </div>
-              <div class="team-stat-item">
-                <div class="team-stat-value">5★</div>
-                <div class="team-stat-key">Avaliação</div>
-              </div>
-            </div>
-            <div class="team-specialties">
-              <span class="tag">Noivas</span>
-              <span class="tag">Festas</span>
-              <span class="tag">Sobrancelha</span>
-              <span class="tag">Henna</span>
-              <span class="tag">Airbrush</span>
-            </div>
-            <div>
-              <a href="agendamento.html?profissional=Patricia+Moura" class="btn btn-primary btn-sm">Agendar com Patrícia</a>
-            </div>
+        </div>
+
+        <div class="team-card fade-up delay-1">
+          <div class="team-card-photo" style="background: linear-gradient(135deg, #FCE7F3, #F9A8D4);">👩🏻‍🦱</div>
+          <div class="team-card-body">
+            <div class="team-name">Fernanda Castro</div>
+            <div class="team-role">Design de Sobrancelhas</div>
+            <p class="team-bio">Especialista em harmonização facial e design de sobrancelhas. Técnicas de henna, brow lamination e micropigmentação artística.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.8 · 134 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Fernanda</a>
+          </div>
+        </div>
+
+        <div class="team-card fade-up delay-2">
+          <div class="team-card-photo" style="background: linear-gradient(135deg, #EDE9FE, #C4B5FD);">👩🏽</div>
+          <div class="team-card-body">
+            <div class="team-name">Isabela Torres</div>
+            <div class="team-role">Depilação & Estética</div>
+            <p class="team-bio">Especialista em depilação com cera quente e técnicas indolores para pele sensível. Tratamentos estéticos corporais e faciais avançados.</p>
+            <div class="team-stars">★★★★★</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">4.7 · 98 avaliações</div>
+            <a href="agendamento.html" class="btn btn-primary btn-sm" style="margin-top:20px; width:100%; justify-content:center;">Agendar com Isabela</a>
           </div>
         </div>
 
@@ -259,71 +126,61 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="orb orb-1"></div>
-    <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">Escolha sua <em>especialista</em></h2>
-        <p class="cta-subtitle">Cada profissional é única. Escolha a que mais combina com o seu estilo e agende agora.</p>
-        <div class="cta-actions">
-          <a href="agendamento.html" class="btn btn-primary btn-lg">Agendar Agora</a>
-          <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-ghost btn-lg">💬 WhatsApp</a>
-        </div>
-      </div>
+  <!-- Hiring banner -->
+  <section class="section-sm" style="background: var(--cream);">
+    <div class="container" style="text-align:center; max-width:600px; margin:0 auto;">
+      <p class="section-label">Faça parte do time</p>
+      <h2 class="fade-up" style="font-size:clamp(32px,4vw,48px); font-weight:300; margin-bottom:16px;">
+        Você é profissional de <em style="font-style:italic; color:var(--rose-deep);">beleza?</em>
+      </h2>
+      <p class="fade-up delay-1" style="color:var(--muted); margin-bottom:36px;">
+        Estamos sempre em busca de talentos apaixonados. Envie seu portfólio e venha fazer parte da família Beleza.
+      </p>
+      <a href="contato.html" class="btn btn-primary btn-lg fade-up delay-2">Trabalhe conosco</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <footer>
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top">
         <div>
-          <div class="footer-logo">Belezz<span>a</span></div>
-          <p class="footer-desc">Salão de beleza premium no coração de São Paulo.</p>
-          <div class="footer-social">
-            <a href="#" class="social-btn">📸</a>
-            <a href="#" class="social-btn">👍</a>
-            <a href="#" class="social-btn">🎵</a>
-            <a href="#" class="social-btn">💬</a>
+          <div class="footer-brand-logo">Beleza<span>.</span></div>
+          <p class="footer-brand-desc">Plataforma premium de agendamento para salão feminino.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Serviços</div>
+          <div class="footer-links">
+            <a href="servicos.html">Corte & Escova</a>
+            <a href="servicos.html">Coloração</a>
+            <a href="servicos.html">Manicure</a>
           </div>
         </div>
         <div>
-          <div class="footer-heading">Serviços</div>
-          <ul class="footer-links">
-            <li><a href="servicos.html">Corte & Styling</a></li>
-            <li><a href="servicos.html">Coloração</a></li>
-            <li><a href="servicos.html">Manicure</a></li>
-            <li><a href="servicos.html">Tratamentos</a></li>
-          </ul>
+          <div class="footer-col-title">Empresa</div>
+          <div class="footer-links">
+            <a href="equipe.html">Equipe</a>
+            <a href="contato.html">Contato</a>
+            <a href="agendamento.html">Agendar</a>
+          </div>
         </div>
         <div>
-          <div class="footer-heading">Salão</div>
-          <ul class="footer-links">
-            <li><a href="equipe.html">Nossa Equipe</a></li>
-            <li><a href="agendamento.html">Agendar Online</a></li>
-            <li><a href="contato.html">Contato</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-heading">Contato</div>
-          <ul class="footer-links">
-            <li><a href="contato.html">📍 Rua Augusta, 1200 – SP</a></li>
-            <li><a href="tel:+5511999999999">📞 (11) 99999-9999</a></li>
-            <li><a href="mailto:contato@belezza.com.br">✉️ contato@belezza.com.br</a></li>
-          </ul>
+          <div class="footer-col-title">Contato</div>
+          <div class="footer-links">
+            <a href="#">📍 Av. Paulista, 1000 — SP</a>
+            <a href="#">📞 (11) 99999-9999</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Belezza. Todos os direitos reservados.</span>
-        <span>Feito com 💖 em São Paulo</span>
+        <span>© 2025 Beleza. Todos os direitos reservados.</span>
       </div>
     </div>
   </footer>
 
-  <div class="whatsapp-float">
-    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">💬</a>
-  </div>
+  <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+    <span class="wpp-icon">💬</span>
+    <span class="wpp-text">WhatsApp</span>
+  </a>
 
   <script src="script.js"></script>
 </body>

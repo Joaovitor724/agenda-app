@@ -3,11 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belezza — Entrar</title>
+  <title>Beleza — Entrar</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body { overflow: hidden; }
-    @media (max-width: 1024px) { body { overflow: auto; } }
+    @media (max-width: 768px) { body { overflow: auto; } }
+
+    /* ── Strength Bar ── */
+    .strength-bar {
+      height: 4px;
+      border-radius: 4px;
+      background: var(--border);
+      margin-top: 8px;
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+    .strength-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.4s var(--ease), background 0.3s;
+    }
+    .strength-text {
+      font-size: 11px;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    /* ── Forgot Password Modal Steps ── */
+    .reset-step { display: none; }
+    .reset-step.active { display: block; }
+
+    .code-inputs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 28px 0;
+    }
+    .code-input {
+      width: 52px;
+      height: 60px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: var(--font-display);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--dark);
+      transition: all 0.2s var(--ease);
+      outline: none;
+    }
+    .code-input:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 4px rgba(212,102,122,0.12);
+    }
+    .code-input.filled {
+      border-color: var(--rose-deep);
+      background: var(--rose-pale);
+      color: var(--rose-deep);
+    }
+
+    .countdown {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+    .countdown strong { color: var(--rose-deep); font-weight: 700; }
+
+    /* Demo code display */
+    .demo-code-box {
+      background: var(--blush);
+      border: 1px solid var(--rose-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 20px;
+      text-align: center;
+      margin: 16px 0;
+      display: none;
+    }
+    .demo-code-box.visible { display: block; }
+    .demo-code-box-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .demo-code-box-value { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--rose-deep); letter-spacing: 8px; }
   </style>
 </head>
 <body>
@@ -16,13 +93,13 @@
 
     <!-- ── Visual Side ── -->
     <div class="login-visual">
-      <a href="index.html" class="login-back">← Voltar ao site</a>
+      <a href="home.html" class="login-back">← Voltar ao site</a>
 
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
 
       <div class="login-visual-content">
-        <div class="login-logo">Belezz<span>a</span></div>
+        <div class="login-logo">Beleza<span>.</span></div>
         <div class="login-tagline">Sua beleza, nossa paixão</div>
 
         <div class="login-features">
@@ -44,19 +121,19 @@
           </div>
         </div>
 
-        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-          <div style="display: flex; gap: 32px; justify-content: center;">
-            <div style="text-align: center;">
-              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">12+</div>
-              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Anos</div>
+        <div style="margin-top:60px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1);">
+          <div style="display:flex; gap:32px; justify-content:center;">
+            <div style="text-align:center;">
+              <div style="font-family:var(--font-display); font-size:32px; color:var(--white);">12+</div>
+              <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:4px;">Anos</div>
             </div>
-            <div style="text-align: center;">
-              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">5k+</div>
-              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Clientes</div>
+            <div style="text-align:center;">
+              <div style="font-family:var(--font-display); font-size:32px; color:var(--white);">5k+</div>
+              <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:4px;">Clientes</div>
             </div>
-            <div style="text-align: center;">
-              <div style="font-family: var(--font-display); font-size: 32px; color: var(--white);">98%</div>
-              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px;">Satisfação</div>
+            <div style="text-align:center;">
+              <div style="font-family:var(--font-display); font-size:32px; color:var(--white);">98%</div>
+              <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:4px;">Satisfação</div>
             </div>
           </div>
         </div>
@@ -67,32 +144,41 @@
     <div class="login-form-side">
       <div class="login-form-box">
 
+        <!-- ═══ LOGIN VIEW ═══ -->
         <div id="view-login">
           <h1 class="login-form-title">Bem-vinda <em>de volta</em></h1>
           <p class="login-form-subtitle">Entre na sua conta para agendar e gerenciar seus horários.</p>
 
           <div class="form-group">
             <label class="form-label">E-mail</label>
-            <input type="email" class="form-input" id="login-email" placeholder="seu@email.com" />
+            <input type="email" class="form-input" id="login-email" placeholder="seu@email.com"
+              autocomplete="email" />
           </div>
 
           <div class="form-group">
             <label class="form-label" style="display:flex; align-items:center; justify-content:space-between;">
               Senha
-              <a href="#" style="font-size:12px; color:var(--rose-deep); font-weight:400; text-transform:none; letter-spacing:0;">Esqueceu a senha?</a>
+              <a href="#" id="forgot-link" 
+                 style="font-size:12px; color:var(--rose-deep); font-weight:500; text-transform:none; letter-spacing:0;"
+                 onclick="openForgotModal(); return false;">
+                Esqueceu a senha?
+              </a>
             </label>
             <div class="input-password-wrap">
-              <input type="password" class="form-input" id="login-password" placeholder="Sua senha" />
-              <button class="password-toggle" onclick="togglePassword('login-password', this)" type="button">👁</button>
+              <input type="password" class="form-input" id="login-password" placeholder="Sua senha"
+                autocomplete="current-password" />
+              <button class="password-toggle" onclick="Beleza.togglePassword('login-password', this)" type="button" title="Mostrar senha">👁</button>
             </div>
           </div>
 
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:28px;">
-            <input type="checkbox" id="remember" style="accent-color: var(--rose-deep); width:16px; height:16px;" />
+            <input type="checkbox" id="remember" style="accent-color:var(--rose-deep); width:16px; height:16px;" />
             <label for="remember" style="font-size:14px; color:var(--muted); cursor:pointer;">Lembrar de mim</label>
           </div>
 
-          <button class="btn btn-primary" style="width:100%; justify-content:center; font-size:14px; padding:16px;" onclick="doLogin()">
+          <button class="btn btn-primary" id="btn-login"
+            style="width:100%; justify-content:center; font-size:14px; padding:16px;"
+            onclick="doLogin()">
             Entrar na conta
           </button>
 
@@ -102,34 +188,36 @@
             <div class="login-divider-line"></div>
           </div>
 
-          <button class="btn btn-outline" style="width:100%; justify-content:center; font-size:14px; padding:16px; gap:12px;" onclick="demoLogin()">
+          <button class="btn btn-outline" id="btn-demo"
+            style="width:100%; justify-content:center; font-size:14px; padding:16px; gap:12px;"
+            onclick="demoLogin()">
             <span>✨</span> Entrar como visitante
           </button>
 
           <div class="login-footer-text">
-            Não tem conta? <a href="#" onclick="showRegister(); return false;">Criar conta grátis</a>
+            Não tem conta? <a href="#" onclick="showView('register'); return false;">Criar conta grátis</a>
           </div>
         </div>
 
-        <!-- ── Register view ── -->
+        <!-- ═══ REGISTER VIEW ═══ -->
         <div id="view-register" style="display:none;">
           <h1 class="login-form-title">Criar <em>conta</em></h1>
           <p class="login-form-subtitle">Cadastre-se e comece a agendar seus serviços favoritos.</p>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
             <div class="form-group">
               <label class="form-label">Nome</label>
-              <input type="text" class="form-input" id="reg-firstname" placeholder="Maria" />
+              <input type="text" class="form-input" id="reg-firstname" placeholder="Maria" autocomplete="given-name" />
             </div>
             <div class="form-group">
               <label class="form-label">Sobrenome</label>
-              <input type="text" class="form-input" id="reg-lastname" placeholder="Silva" />
+              <input type="text" class="form-input" id="reg-lastname" placeholder="Silva" autocomplete="family-name" />
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label">E-mail</label>
-            <input type="email" class="form-input" id="reg-email" placeholder="seu@email.com" />
+            <input type="email" class="form-input" id="reg-email" placeholder="seu@email.com" autocomplete="email" />
           </div>
 
           <div class="form-group">
@@ -140,71 +228,226 @@
           <div class="form-group">
             <label class="form-label">Senha</label>
             <div class="input-password-wrap">
-              <input type="password" class="form-input" id="reg-password" placeholder="Mínimo 8 caracteres" />
-              <button class="password-toggle" onclick="togglePassword('reg-password', this)" type="button">👁</button>
+              <input type="password" class="form-input" id="reg-password" placeholder="Mínimo 8 caracteres"
+                oninput="updateStrengthBar(this.value)" autocomplete="new-password" />
+              <button class="password-toggle" onclick="Beleza.togglePassword('reg-password', this)" type="button">👁</button>
             </div>
+            <div class="strength-bar"><div class="strength-bar-fill" id="strength-fill"></div></div>
+            <div class="strength-text" id="strength-text"></div>
           </div>
 
           <div style="margin-bottom:28px;">
             <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
-              <input type="checkbox" id="terms" style="accent-color: var(--rose-deep); width:16px; height:16px; margin-top:3px; flex-shrink:0;" />
-              <span style="font-size:13px; color:var(--muted); line-height:1.6;">Aceito os <a href="#" style="color:var(--rose-deep);">Termos de Uso</a> e a <a href="#" style="color:var(--rose-deep);">Política de Privacidade</a> do Belezza</span>
+              <input type="checkbox" id="terms"
+                style="accent-color:var(--rose-deep); width:16px; height:16px; margin-top:3px; flex-shrink:0;" />
+              <span style="font-size:13px; color:var(--muted); line-height:1.6;">
+                Aceito os <a href="#" style="color:var(--rose-deep);">Termos de Uso</a> e a
+                <a href="#" style="color:var(--rose-deep);">Política de Privacidade</a> da Beleza
+              </span>
             </label>
           </div>
 
-          <button class="btn btn-primary" style="width:100%; justify-content:center; font-size:14px; padding:16px;" onclick="doRegister()">
+          <button class="btn btn-primary" id="btn-register"
+            style="width:100%; justify-content:center; font-size:14px; padding:16px;"
+            onclick="doRegister()">
             Criar minha conta
           </button>
 
           <div class="login-footer-text">
-            Já tem conta? <a href="#" onclick="showLogin(); return false;">Entrar agora</a>
+            Já tem conta? <a href="#" onclick="showView('login'); return false;">Entrar agora</a>
           </div>
         </div>
 
       </div>
     </div>
+  </div>
 
+  <!-- ════════════════════════════════════════
+       MODAL: RECUPERAÇÃO DE SENHA
+  ════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="modal-forgot">
+    <div class="modal" style="max-width:460px;">
+      <button class="modal-close" onclick="closeForgotModal()" aria-label="Fechar">✕</button>
+
+      <!-- STEP 1: E-mail -->
+      <div class="reset-step active" id="reset-step-1">
+        <div style="font-size:40px; margin-bottom:16px; text-align:center;">🔐</div>
+        <h2 class="modal-title" style="text-align:center;">Esqueceu a<br><em>senha?</em></h2>
+        <p class="modal-subtitle" style="text-align:center;">
+          Informe seu e-mail e enviaremos um código de verificação para recuperar o acesso.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Seu e-mail</label>
+          <input type="email" class="form-input" id="reset-email" placeholder="seu@email.com"
+            autocomplete="email" />
+        </div>
+
+        <!-- Mostra código fake (demo) -->
+        <div class="demo-code-box" id="demo-code-box">
+          <div class="demo-code-box-label">⚡ Modo Demo — Seu código é</div>
+          <div class="demo-code-box-value" id="demo-code-value">——</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:6px;">Válido por 15 minutos</div>
+        </div>
+
+        <button class="btn btn-primary" id="btn-send-code"
+          style="width:100%; justify-content:center; font-size:14px; padding:16px; margin-bottom:12px;"
+          onclick="sendResetCode()">
+          Enviar código
+        </button>
+
+        <button class="btn btn-ghost" style="width:100%; justify-content:center;"
+          onclick="closeForgotModal()">
+          Voltar para login
+        </button>
+      </div>
+
+      <!-- STEP 2: Código -->
+      <div class="reset-step" id="reset-step-2">
+        <div style="font-size:40px; margin-bottom:16px; text-align:center;">📬</div>
+        <h2 class="modal-title" style="text-align:center;">Verifique seu<br><em>e-mail</em></h2>
+        <p class="modal-subtitle" style="text-align:center;">
+          Enviamos um código de 6 dígitos para <strong id="reset-email-display" style="color:var(--rose-deep);"></strong>
+        </p>
+
+        <div class="code-inputs" id="code-inputs">
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+          <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+        </div>
+
+        <div class="countdown" id="countdown-text">
+          Código expira em <strong id="countdown-timer">15:00</strong>
+        </div>
+
+        <button class="btn btn-primary" id="btn-verify-code"
+          style="width:100%; justify-content:center; font-size:14px; padding:16px; margin-top:24px; margin-bottom:12px;"
+          onclick="verifyCode()">
+          Verificar código
+        </button>
+
+        <button class="btn btn-ghost" style="width:100%; justify-content:center;"
+          onclick="goToResetStep(1)">
+          ← Tentar outro e-mail
+        </button>
+      </div>
+
+      <!-- STEP 3: Nova senha -->
+      <div class="reset-step" id="reset-step-3">
+        <div style="font-size:40px; margin-bottom:16px; text-align:center;">🔑</div>
+        <h2 class="modal-title" style="text-align:center;">Nova <em>senha</em></h2>
+        <p class="modal-subtitle" style="text-align:center;">
+          Escolha uma senha forte para proteger sua conta.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Nova senha</label>
+          <div class="input-password-wrap">
+            <input type="password" class="form-input" id="new-password" placeholder="Mínimo 8 caracteres"
+              oninput="updateStrengthBar(this.value, 'new-strength-fill', 'new-strength-text')"
+              autocomplete="new-password" />
+            <button class="password-toggle" onclick="Beleza.togglePassword('new-password', this)" type="button">👁</button>
+          </div>
+          <div class="strength-bar"><div class="strength-bar-fill" id="new-strength-fill"></div></div>
+          <div class="strength-text" id="new-strength-text"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Confirmar nova senha</label>
+          <div class="input-password-wrap">
+            <input type="password" class="form-input" id="confirm-password" placeholder="Repita a senha"
+              autocomplete="new-password" />
+            <button class="password-toggle" onclick="Beleza.togglePassword('confirm-password', this)" type="button">👁</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="btn-reset-password"
+          style="width:100%; justify-content:center; font-size:14px; padding:16px; margin-bottom:12px;"
+          onclick="resetPassword()">
+          Redefinir senha
+        </button>
+      </div>
+
+      <!-- STEP 4: Sucesso -->
+      <div class="reset-step" id="reset-step-4">
+        <div style="font-size:64px; margin-bottom:20px; text-align:center; animation: successBounce 0.6s var(--ease-spring);">🎉</div>
+        <h2 class="modal-title" style="text-align:center;">Senha redefinida<br><em>com sucesso!</em></h2>
+        <p class="modal-subtitle" style="text-align:center;">
+          Sua nova senha foi salva. Agora você pode entrar na sua conta.
+        </p>
+        <button class="btn btn-primary"
+          style="width:100%; justify-content:center; font-size:14px; padding:16px;"
+          onclick="closeForgotModal(); showView('login');">
+          Entrar agora 💖
+        </button>
+      </div>
+
+    </div>
   </div>
 
   <script src="script.js"></script>
   <script>
-    // Redirect if already logged in
-    if (Belezza.getUser()) window.location.href = 'index.html';
+    /* ══════════════════════════════════════
+       LOGIN PAGE — Scripts Inline
+    ══════════════════════════════════════ */
 
-    function togglePassword(inputId, btn) {
-      const input = document.getElementById(inputId);
-      if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
-      else { input.type = 'password'; btn.textContent = '👁'; }
+    // Redirect se já logado
+    (function checkAuth() {
+      const user = Beleza.getUser();
+      if (user) window.location.href = 'home.html';
+    })();
+
+    /* ── Alternância de Views ── */
+    function showView(name) {
+      document.getElementById('view-login').style.display    = name === 'login'    ? 'block' : 'none';
+      document.getElementById('view-register').style.display = name === 'register' ? 'block' : 'none';
     }
 
-    function showRegister() {
-      document.getElementById('view-login').style.display = 'none';
-      document.getElementById('view-register').style.display = 'block';
-    }
-    function showLogin() {
-      document.getElementById('view-register').style.display = 'none';
-      document.getElementById('view-login').style.display = 'block';
-    }
-
+    /* ── Login ── */
     function doLogin() {
       const email    = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value;
-      if (!email || !password) { Belezza.showToast('Preencha todos os campos.', 'warning'); return; }
-      if (!email.includes('@')) { Belezza.showToast('E-mail inválido.', 'error'); return; }
-      // Demo login accepts any valid email + password with 6+ chars
-      if (password.length < 6) { Belezza.showToast('Senha incorreta.', 'error'); return; }
-      const name = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      Belezza.setUser({ name, email });
-      Belezza.showToast('Bem-vinda de volta! 💖', 'success');
-      setTimeout(() => window.location.href = 'index.html', 1000);
+      const btn      = document.getElementById('btn-login');
+
+      // Validações visuais
+      Beleza.setInputState('login-email',    Beleza.isValidEmail(email));
+      Beleza.setInputState('login-password', password.length >= 6);
+
+      if (!email)    { Beleza.showToast('Informe seu e-mail.', 'warning'); return; }
+      if (!Beleza.isValidEmail(email)) { Beleza.showToast('E-mail inválido.', 'error'); return; }
+      if (password.length < 6) { Beleza.showToast('Senha deve ter mínimo 6 caracteres.', 'error'); return; }
+
+      // Loading
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        const name = email.split('@')[0]
+          .replace(/[._-]/g, ' ')
+          .replace(/\b\w/g, l => l.toUpperCase());
+
+        Beleza.setUser({ name, email });
+        Beleza.showToast(`Bem-vinda de volta, ${name.split(' ')[0]}! 💖`, 'success');
+        setTimeout(() => window.location.href = 'home.html', 1000);
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }, 1200);
     }
 
+    /* ── Demo Login ── */
     function demoLogin() {
-      Belezza.setUser({ name: 'Maria Silva', email: 'maria@demo.com' });
-      Belezza.showToast('Entrando como visitante...', 'info');
-      setTimeout(() => window.location.href = 'index.html', 800);
+      const btn = document.getElementById('btn-demo');
+      btn.classList.add('loading');
+      btn.disabled = true;
+      Beleza.setUser({ name: 'Maria Silva', email: 'maria@demo.com' });
+      Beleza.showToast('Entrando como visitante... ✨', 'info');
+      setTimeout(() => window.location.href = 'home.html', 900);
     }
 
+    /* ── Registro ── */
     function doRegister() {
       const first    = document.getElementById('reg-firstname').value.trim();
       const last     = document.getElementById('reg-lastname').value.trim();
@@ -212,21 +455,258 @@
       const phone    = document.getElementById('reg-phone').value.trim();
       const password = document.getElementById('reg-password').value;
       const terms    = document.getElementById('terms').checked;
-      if (!first || !last || !email || !phone || !password) { Belezza.showToast('Preencha todos os campos.', 'warning'); return; }
-      if (!email.includes('@')) { Belezza.showToast('E-mail inválido.', 'error'); return; }
-      if (password.length < 8) { Belezza.showToast('A senha deve ter mínimo 8 caracteres.', 'warning'); return; }
-      if (!terms) { Belezza.showToast('Aceite os termos para continuar.', 'warning'); return; }
-      Belezza.setUser({ name: `${first} ${last}`, email, phone });
-      Belezza.showToast('Conta criada com sucesso! 🎉', 'success');
-      setTimeout(() => window.location.href = 'index.html', 1000);
+      const btn      = document.getElementById('btn-register');
+
+      if (!first || !last) { Beleza.showToast('Informe seu nome completo.', 'warning'); return; }
+      if (!Beleza.isValidEmail(email)) { Beleza.showToast('E-mail inválido.', 'error'); return; }
+      if (!phone || phone.length < 14) { Beleza.showToast('Telefone inválido.', 'warning'); return; }
+      if (!Beleza.isValidPassword(password)) { Beleza.showToast('A senha deve ter mínimo 8 caracteres.', 'warning'); return; }
+      if (!terms) { Beleza.showToast('Aceite os termos para continuar.', 'warning'); return; }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        Beleza.setUser({ name: `${first} ${last}`, email, phone });
+        Beleza.showToast('Conta criada com sucesso! 🎉', 'success');
+        setTimeout(() => window.location.href = 'home.html', 1000);
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }, 1400);
     }
 
-    // Enter key support
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        if (document.getElementById('view-login').style.display !== 'none') doLogin();
-        else doRegister();
+    /* ── Strength Bar ── */
+    function updateStrengthBar(value, fillId = 'strength-fill', textId = 'strength-text') {
+      const fill = document.getElementById(fillId);
+      const text = document.getElementById(textId);
+      if (!fill || !text) return;
+
+      let score = 0;
+      if (value.length >= 8)             score++;
+      if (/[A-Z]/.test(value))           score++;
+      if (/[0-9]/.test(value))           score++;
+      if (/[^A-Za-z0-9]/.test(value))   score++;
+
+      const levels = [
+        { pct: '0%',   color: '',              label: '' },
+        { pct: '25%',  color: '#E05555',        label: 'Muito fraca' },
+        { pct: '50%',  color: var_gold(),        label: 'Razoável' },
+        { pct: '75%',  color: '#F59E0B',         label: 'Boa' },
+        { pct: '100%', color: '#16A34A',         label: 'Excelente 💪' },
+      ];
+
+      const l = levels[score] || levels[0];
+      fill.style.width      = l.pct;
+      fill.style.background = l.color;
+      text.textContent       = l.label;
+    }
+
+    function var_gold() { return '#C9A96E'; }
+
+    /* ══════════════════════════════════════
+       RECUPERAÇÃO DE SENHA
+    ══════════════════════════════════════ */
+
+    let resetEmail = '';
+    let countdownInterval = null;
+
+    function openForgotModal() {
+      Beleza.openModal('modal-forgot');
+      goToResetStep(1);
+      // Pré-preenche com email já digitado no login
+      const loginEmail = document.getElementById('login-email').value.trim();
+      if (loginEmail) document.getElementById('reset-email').value = loginEmail;
+    }
+
+    function closeForgotModal() {
+      Beleza.closeModal('modal-forgot');
+      clearInterval(countdownInterval);
+    }
+
+    function goToResetStep(step) {
+      document.querySelectorAll('.reset-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`reset-step-${step}`)?.classList.add('active');
+    }
+
+    /* Passo 1: Enviar código */
+    function sendResetCode() {
+      const emailInput = document.getElementById('reset-email');
+      const email      = emailInput.value.trim();
+      const btn        = document.getElementById('btn-send-code');
+
+      if (!Beleza.isValidEmail(email)) {
+        emailInput.classList.add('error');
+        Beleza.showToast('Informe um e-mail válido.', 'error');
+        return;
       }
+
+      emailInput.classList.remove('error');
+      emailInput.classList.add('success');
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        resetEmail = email;
+        const code = Beleza.saveResetCode(email);
+
+        // Mostra código no modo demo
+        document.getElementById('demo-code-value').textContent = code;
+        document.getElementById('demo-code-box').classList.add('visible');
+
+        btn.classList.remove('loading');
+        btn.disabled = false;
+
+        Beleza.showToast('Código enviado! Verifique seu e-mail. 📬', 'success');
+
+        // Vai para passo 2
+        document.getElementById('reset-email-display').textContent = email;
+        initCodeInputs();
+        startCountdown(15 * 60);
+        goToResetStep(2);
+      }, 1500);
+    }
+
+    /* Inputs de código individuais */
+    function initCodeInputs() {
+      const inputs = document.querySelectorAll('.code-input');
+      inputs.forEach((input, i) => {
+        input.value = '';
+        input.classList.remove('filled');
+
+        input.addEventListener('input', () => {
+          const v = input.value.replace(/\D/g, '');
+          input.value = v;
+          input.classList.toggle('filled', v.length > 0);
+          if (v && i < inputs.length - 1) inputs[i + 1].focus();
+        });
+
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !input.value && i > 0) {
+            inputs[i - 1].focus();
+          }
+        });
+
+        input.addEventListener('paste', e => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+          [...pasted].forEach((ch, j) => {
+            if (inputs[i + j]) {
+              inputs[i + j].value = ch;
+              inputs[i + j].classList.add('filled');
+            }
+          });
+          const next = Math.min(i + pasted.length, inputs.length - 1);
+          inputs[next].focus();
+        });
+      });
+
+      inputs[0].focus();
+    }
+
+    function getCodeValue() {
+      return [...document.querySelectorAll('.code-input')].map(i => i.value).join('');
+    }
+
+    /* Countdown timer */
+    function startCountdown(seconds) {
+      clearInterval(countdownInterval);
+      let remaining = seconds;
+      const el = document.getElementById('countdown-timer');
+
+      function tick() {
+        const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+        const s = String(remaining % 60).padStart(2, '0');
+        if (el) el.textContent = `${m}:${s}`;
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          if (el) el.textContent = '00:00';
+          document.getElementById('countdown-text').innerHTML =
+            '<span style="color:var(--rose);">Código expirado. <a href="#" onclick="goToResetStep(1)">Solicitar novo →</a></span>';
+        }
+        remaining--;
+      }
+      tick();
+      countdownInterval = setInterval(tick, 1000);
+    }
+
+    /* Passo 2: Verificar código */
+    function verifyCode() {
+      const code = getCodeValue();
+      const btn  = document.getElementById('btn-verify-code');
+
+      if (code.length < 6) {
+        Beleza.showToast('Digite os 6 dígitos do código.', 'warning');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+
+        if (Beleza.validateResetCode(resetEmail, code)) {
+          Beleza.showToast('Código verificado! ✅', 'success');
+          clearInterval(countdownInterval);
+          goToResetStep(3);
+        } else {
+          document.querySelectorAll('.code-input').forEach(i => {
+            i.classList.add('error');
+            setTimeout(() => i.classList.remove('error'), 1500);
+          });
+          Beleza.showToast('Código inválido ou expirado.', 'error');
+        }
+      }, 1000);
+    }
+
+    /* Passo 3: Redefinir senha */
+    function resetPassword() {
+      const newPwd  = document.getElementById('new-password').value;
+      const confPwd = document.getElementById('confirm-password').value;
+      const btn     = document.getElementById('btn-reset-password');
+
+      if (!Beleza.isValidPassword(newPwd)) {
+        Beleza.showToast('A senha deve ter mínimo 8 caracteres.', 'warning');
+        Beleza.setInputState('new-password', false);
+        return;
+      }
+
+      if (newPwd !== confPwd) {
+        Beleza.showToast('As senhas não coincidem.', 'error');
+        Beleza.setInputState('confirm-password', false);
+        return;
+      }
+
+      Beleza.setInputState('new-password', true);
+      Beleza.setInputState('confirm-password', true);
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        // Salva nova senha no "perfil" (fake - localStorage)
+        const userRaw = localStorage.getItem('beleza_user');
+        if (userRaw) {
+          const user = JSON.parse(userRaw);
+          user.passwordHash = btoa(newPwd); // simulação
+          localStorage.setItem('beleza_user', JSON.stringify(user));
+        }
+        Beleza.clearResetCode();
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        goToResetStep(4);
+      }, 1400);
+    }
+
+    /* ── Enter key support ── */
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const loginVisible    = document.getElementById('view-login').style.display !== 'none';
+      const registerVisible = document.getElementById('view-register').style.display !== 'none';
+      if (loginVisible)    doLogin();
+      if (registerVisible) doRegister();
     });
   </script>
 </body>
